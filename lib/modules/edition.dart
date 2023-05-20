@@ -1,57 +1,46 @@
 class Edition {
-  int numero;
-  String dateDebut;
-  String dateFin;
-  String texte;
-  String titre;
+  //déclarer des variables non-nullable qui seront initialisées ultérieurement
+  late int numero;
+  late String titre;
+  late String texte;
+  late String dateDebut;
+  late String dateFin;
 
   Edition({
     required this.numero,
-    required this.titre, 
+    required this.titre,
     required this.texte,
     required this.dateDebut,
     required this.dateFin,
   });
 
-  // Getters
-  int get getNumero {
-    return numero;
+  Edition.fromJson(Map<String, dynamic> map) {
+    numero = map['num'];
+    titre = map['titre'];
+    texte = map['texte'];
+    dateDebut = map['dateD'];
+    dateFin = map['dateF'];
   }
 
-  String get getdateDebut {
-    return dateDebut;
-  }
+  // Getters and Setters (Dart's shorthand syntax can also be used)
 
-  String get getdateFin {
-    return dateFin;
-  }
+  int get getNumero => numero;
 
-  String get getTexte {
-    return texte;
-  }
+  String get getTitre => titre;
 
-  String get getTitre {
-    return titre;
-  }
+  String get getTexte => texte;
 
-  // Setters
-  set setNumero(int value) {
-    numero = value;
-  }
+  String get getDateDebut => dateDebut;
 
-  set setdateDebut(String value) {
-    dateDebut = value;
-  }
+  String get getDateFin => dateFin;
 
-  set setdateFin(String value) {
-    dateFin = value;
-  }
+  set setNumero(int value) => numero = value;
 
-  set setTexte(String value) {
-    texte = value;
-  }
+  set setTitre(String value) => titre = value;
 
-  set setTitre(String value) {
-    titre = value;
-  }
+  set setTexte(String value) => texte = value;
+
+  set setDateDebut(String value) => dateDebut = value;
+
+  set setDateFin(String value) => dateFin = value;
 }

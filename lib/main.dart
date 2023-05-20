@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/controllers/connexion.dart';
 import 'package:http/http.dart' as http;
 import 'modules/edition.dart';
 //import 'home.dart';
@@ -11,24 +12,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  Future<List<Edition>> fetchEditions() async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3005/editions'));
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      return data
-          .map((item) => Edition(
-                numero: item['num'],
-                titre: item['titre'],
-                texte: item['texte'],
-                dateDebut: item['dateD'],
-                dateFin: item['dateF'],
-              ))
-          .toList();
-    } else {
-      throw Exception('Failed to fetch editions');
-    }
-  }
+  ApiEdition edition = ApiEdition();
 
   @override
   Widget build(BuildContext context) {
@@ -38,31 +22,18 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Editions App'),
         ),
-        body: FutureBuilder<List<Edition>>(
-          future: fetchEditions(),
+        body: FutureBuilder(
+          future: edition.editionsGet(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final List<Edition> editions = snapshot.data!;
-              return ListView.builder(
-                itemCount: editions.length,
-                itemBuilder: (context, index) {
-                  final Edition edition = editions[index];
-                  return ListTile(
-                    title: Text('Edition ${edition.numero}'),
-                    subtitle: Text('${edition.dateDebut} - ${edition.dateFin}'),
-                    onTap: () {
-                      // Gérer l'action lorsqu'un élément est cliqué
-                    },
-                  );
-                },
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Error: ${snapshot.error}'),
-              );
+            List<Edition>? eds = snapshot.data as List<Edition>?;
+            if (eds == null) {
+              return CircularProgressIndicator(); // ou un widget de chargement approprié
             } else {
-              return Center(
-                child: CircularProgressIndicator(),
+              return ListView.builder(
+                itemCount: eds.length,
+                itemBuilder: (context, index) {
+                  return Text(eds[index].titre);
+                },
               );
             }
           },

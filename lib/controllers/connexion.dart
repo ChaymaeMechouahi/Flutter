@@ -1,11 +1,24 @@
+import 'package:flutter_hello/modules/edition.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ApiEdition {
-  static const String baseUrl = 'http://localhost:3005/editions';
+  Future<List<Edition>> editionsGet() async {
+    http.Response response = await http.get(Uri.parse(
+        "http://localhost:3005/editions")); // Obtenir les données de mon API
+    List<Edition> editions = [];
 
-  Future<http.Response> fetchData(String endpoint) async {
-    final url = Uri.parse('$baseUrl/$endpoint');
-    final response = await http.get(url);
-    return response;
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+
+      for (var item in body) {
+        editions.add(Edition.fromJson(item));
+      }
+
+      return editions;
+    } else {
+      throw Exception(
+          'Failed to fetch editions'); // Lancer une exception en cas de problème avec la requête
+    }
   }
 }
