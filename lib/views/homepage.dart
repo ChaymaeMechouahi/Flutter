@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
     try {
       print('je suis ici 2');
 
-      var response = await APIManager.fetchData('/editions');
+      var response = await APIManager.fetchData('editions');
       setState(() {
         apiResponse = response.body;
       });
