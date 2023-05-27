@@ -59,6 +59,7 @@ class _MyCarouselState extends State<MyCarousel> {
                       image: DecorationImage(
                         image: NetworkImage(_carouselImages[index]),
                         fit: BoxFit.cover,
+                        colorFilter: _getOpacityFilter(index),
                       ),
                     ),
                   ),
@@ -98,6 +99,32 @@ class _MyCarouselState extends State<MyCarousel> {
         ),
       ],
     );
+  }
+
+  ColorFilter _getOpacityFilter(int index) {
+    double opacity = (index == _selectedIndex) ? 1.0 : 0.5;
+    return ColorFilter.matrix([
+      opacity,
+      0,
+      0,
+      0,
+      0,
+      0,
+      opacity,
+      0,
+      0,
+      0,
+      0,
+      0,
+      opacity,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+    ]);
   }
 
   List<Widget> _buildDots() {
