@@ -1,52 +1,211 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/controllers/connexion.dart';
+import 'package:flutter_hello/carousel.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  String apiResponse = '';
-
-  Future<void> fetchData() async {
-    print('je suis ici');
-    try {
-      print('je suis ici 2');
-
-      var response = await APIManager.fetchData('/editions');
-      setState(() {
-        apiResponse = response.body;
-      });
-    } catch (error) {
-      setState(() {
-        print(error);
-        apiResponse = 'Erreur lors de la requête API';
-      });
-    }
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Page principale'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: fetchData,
-              child: Text('Appeler l\'API'),
-            ),
-            SizedBox(height: 16),
-            Text(
-              apiResponse,
-              style: TextStyle(fontSize: 24),
-            ),
-          ],
+      // Barre de navigation Bottom
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.brown[200],
+        child: Container(
+          height: 80,
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Colors.white,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: Colors.brown[200],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.brown[200],
+                        ),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.home,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            // Action à effectuer lors du clic sur le bouton Home
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
+      ),
+      body: Column(
+        children: [
+          //logo + l'ecritureau dessus
+          Padding(
+            padding: EdgeInsets.all(7),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 100,
+                          child: Image.asset('assets/images/logo.png',
+                              fit: BoxFit.contain),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          '20 EME EDITION',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          '24 NOVEMBRE AU 02 DECEMBRE 2023',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Barre de recherche
+          Padding(
+            padding: EdgeInsets.all(7),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.brown,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.search,
+                          color: Colors.brown,
+                        ),
+                        onPressed: () {
+                          // Action à effectuer lors du clic sur la loupe de recherche
+                        },
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Recherchez une édition',
+                            border: InputBorder.none,
+                          ),
+                          onChanged: (value) {
+                            // Action à effectuer lors de la saisie de texte
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Archive + Voir plus
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: Center(
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'ARCHIVE',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.brown,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  child: Center(
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.brown,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: 'Voir ',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.brown,
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'plus',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.brown,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Carousel
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: MyCarousel(),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
