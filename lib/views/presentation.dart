@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/galerie.dart';
 
+import '../controllers/BottomBar.dart';
 import '../controllers/move.dart';
 
 GlobalKey title = GlobalKey();
@@ -16,96 +17,11 @@ class MyArtPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.brown[200],
-        child: Container(
-          height: 80,
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.white,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: Colors.brown[200],
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            margin: EdgeInsets.only(right: 10),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.brown[200],
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.arrow_back,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                retourPagePrincipale(context);
-                              },
-                            ),
-                          ),
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.brown[200],
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.home,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                // Action à effectuer lors du clic sur le bouton Home
-                              },
-                            ),
-                          ),
-                          Container(
-                            width: 50,
-                            height: 50,
-                            margin: EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.brown[200],
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.emoji_events,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                // Action à effectuer lors du clic sur le bouton Awards
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+      bottomNavigationBar: MyBottomAppBar(
+        onAwardsPressed: (BuildContext) {},
+        onHomePressed: (BuildContext) {
+          retourPagePrincipale(BuildContext);
+        },
       ),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
