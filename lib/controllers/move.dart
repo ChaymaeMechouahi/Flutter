@@ -1,7 +1,9 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
-
+void retourPagePrincipale(BuildContext context) {
+  Navigator.pop(context);
+}
 void scrollToSection(BuildContext context, GlobalKey key) {
   final RenderObject? renderObject = key.currentContext?.findRenderObject();
   if (renderObject is RenderBox) {

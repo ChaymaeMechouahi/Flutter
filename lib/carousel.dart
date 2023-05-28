@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class MyCarousel extends StatefulWidget {
-  MyCarousel({Key? key}) : super(key: key);
+  final VoidCallback onTap;
+
+  MyCarousel({Key? key, required this.onTap}) : super(key: key);
 
   @override
   _MyCarouselState createState() => _MyCarouselState();
@@ -48,9 +50,7 @@ class _MyCarouselState extends State<MyCarousel> {
             return Stack(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    _carouselController.animateToPage(index);
-                  },
+                  onTap: widget.onTap, // Utilisez la fonction de rappel passée à la classe MyCarousel
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     width: imageWidth,

@@ -41,22 +41,63 @@ class MyArtPage extends StatelessWidget {
                   Expanded(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.brown[200],
-                        ),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.home,
-                            color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 50,
+                            height: 50,
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.brown[200],
+                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                retourPagePrincipale(context);
+                              },
+                            ),
                           ),
-                          onPressed: () {
-                            // Action à effectuer lors du clic sur le bouton Home
-                          },
-                        ),
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.brown[200],
+                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.home,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                // Action à effectuer lors du clic sur le bouton Home
+                              },
+                            ),
+                          ),
+                          Container(
+                            width: 50,
+                            height: 50,
+                            margin: EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.brown[200],
+                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.emoji_events,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                // Action à effectuer lors du clic sur le bouton Awards
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

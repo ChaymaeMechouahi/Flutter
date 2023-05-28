@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/carousel.dart';
+import 'package:flutter_hello/views/presentation.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Barre de navigation Bottom
       bottomNavigationBar: BottomAppBar(
         color: Colors.brown[200],
         child: Container(
@@ -58,7 +58,6 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          //logo + l'ecritureau dessus
           Padding(
             padding: EdgeInsets.all(7),
             child: Row(
@@ -71,8 +70,15 @@ class HomePage extends StatelessWidget {
                       children: [
                         Container(
                           height: 100,
-                          child: Image.asset('assets/images/logo.png',
-                              fit: BoxFit.contain),
+                          child: GestureDetector(
+                            onTap: () {
+                              // Action à effectuer lors du clic sur le logo
+                            },
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                         SizedBox(height: 8),
                         Text(
@@ -96,7 +102,6 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          // Barre de recherche
           Padding(
             padding: EdgeInsets.all(7),
             child: Row(
@@ -139,7 +144,6 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          // Archive + Voir plus
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -194,13 +198,21 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          // Carousel
           Padding(
             padding: EdgeInsets.all(16),
             child: Row(
               children: [
                 Expanded(
-                  child: MyCarousel(),
+                  child: MyCarousel(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyArtPage(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
