@@ -1,4 +1,4 @@
-class Edition {
+class Partcipation {
   //déclarer des variables non-nullable qui seront initialisées ultérieurement
   late int id;
   late int id_participant;
@@ -7,7 +7,7 @@ class Edition {
   late String film;
   late String role;
 
-  Edition({
+  Partcipation({
     required this.id,
     required this.id_participant,
     required this.num_edition,
@@ -16,7 +16,7 @@ class Edition {
     required this.role,
   });
 
-  Edition.fromJson(Map<String, dynamic> map) {
+  Partcipation.fromJson(Map<String, dynamic> map) {
     id = map['id'];
     id_participant = map['id_participant'];
     num_edition = map['num_edition'];

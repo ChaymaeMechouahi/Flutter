@@ -1,24 +1,23 @@
-class Edition {
+class Partcipant {
   //déclarer des variables non-nullable qui seront initialisées ultérieurement
   late int id;
   late String nom;
   late String prenom;
   late String pays;
 
-  Edition({
+  Partcipant({
     required this.id,
     required this.nom,
     required this.prenom,
     required this.pays,
   });
 
-  Edition.fromJson(Map<String, dynamic> map) {
+  Partcipant.fromJson(Map<String, dynamic> map) {
     id = map['id'];
     nom = map['nom'];
     prenom = map['prenom'];
     pays = map['pays'];
   }
-
 
   int get getId => id;
 

@@ -1,16 +1,16 @@
-class Edition {
+class Image {
   //déclarer des variables non-nullable qui seront initialisées ultérieurement
   late int id;
   late int num_edition;
   late String img;
 
-  Edition({
+  Image({
     required this.id,
     required this.num_edition,
     required this.img,
   });
 
-  Edition.fromJson(Map<String, dynamic> map) {
+  Image.fromJson(Map<String, dynamic> map) {
     id = map['id'];
     num_edition = map['num_edition'];
     img = map['img'];
