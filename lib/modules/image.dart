@@ -1,3 +1,5 @@
+
+
 class Image {
   //déclarer des variables non-nullable qui seront initialisées ultérieurement
   late int id;
@@ -15,7 +17,7 @@ class Image {
     num_edition = map['num_edition'];
     img = map['img'];
   }
-
+  
   int get getId => id;
 
   int get getNumEdition => num_edition;
@@ -27,4 +29,5 @@ class Image {
   set setNumero(int value) => num_edition = value;
 
   set setImg(String value) => img = value;
+    
 }
