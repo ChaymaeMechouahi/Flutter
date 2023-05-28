@@ -22,7 +22,6 @@ class Edition {
     dateFin = map['dateF'];
   }
 
-  // Getters and Setters (Dart's shorthand syntax can also be used)
 
   int get getNumero => numero;
 
