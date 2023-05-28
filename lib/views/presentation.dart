@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/galerie.dart';
 
 class MyArtPage extends StatelessWidget {
+  final List<String> imageUrls = [
+    'https://picsum.photos/id/10/300/200',
+    'https://picsum.photos/id/100/300/200',
+    'https://picsum.photos/id/1000/300/200'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,6 +18,7 @@ class MyArtPage extends StatelessWidget {
               screenWidth / MediaQuery.of(context).size.aspectRatio * 0.7;
 
           return SingleChildScrollView(
+            // Ajout du SingleChildScrollView
             child: Column(
               children: [
                 // Partie supérieure avec la couleur de fond
@@ -51,6 +59,62 @@ class MyArtPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: Center(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    'GALERIE',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      color: Colors.brown,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Center(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.brown,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: 'Voir ',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.brown,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: 'plus',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.brown,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      MyGalerie(imageUrls: imageUrls), // Appel à MyGalerie
                     ],
                   ),
                 ),
