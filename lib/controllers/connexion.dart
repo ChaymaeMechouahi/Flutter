@@ -1,6 +1,4 @@
-import 'package:flutter_hello/modules/edition.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class APIManager {
   static const String baseURL = 'http://192.168.1.112:3005';

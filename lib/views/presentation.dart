@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+
+class MyArtPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          final double screenWidth = constraints.maxWidth;
+          final double imageHeight =
+              screenWidth / MediaQuery.of(context).size.aspectRatio * 0.7;
+
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                // Partie supérieure avec la couleur de fond
+                Container(
+                  width: screenWidth,
+                  height: imageHeight,
+                  color: Colors.blue, // Remplacez par la couleur souhaitée
+                ),
+                // Partie inférieure avec le titre et le texte scrollable
+                Container(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Titre principal',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: SizedBox(
+                          height: 200, // Hauteur du rectangle
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(
+                                'L’une des images fortes de cette 14e édition restera l’hommage rendu à l’acteur égyptien Adel Imam, qui jouit d’une immense popularité au Maroc auprès de plusieurs générations. L’Étoile d’or du Festival de Marrakech lui est remise par Touria Jebrane, comédienne et ancienne ministre de la culture, devant une salle enthousiaste et émue.\n\nJeremy Irons, qui connaît bien le Festival de Marrakech pour en avoir présidé le jury court métrage en 2003, livre un discours vibrant pour le rapprochement des cultures tandis que Viggo Mortensen déclare en dialecte marocain à quel point il se sent chez lui quand il est au Maroc.\n\nA travers les hommages rendus aux producteurs délégués marocains, Zakaria Alaoui et Khadija Alami, le Festival entend récompenser les efforts de deux professionnels chevronnés qui n’ont cessé d’œuvrer pour que le Maroc soit une terre d’accueil pour les productions étrangères.\n\nCette année, le festival rend hommage à l’une des plus grandes et des plus riches cinématographies au monde : le Japon ! Présidée par le grand maître Kore-eda Hirokazu, la délégation se compose de réalisateurs, acteurs, producteurs et professionnels divers.\n\nLe jury, présidé par la grande actrice française Isabelle Huppert, une habituée du festival depuis ses débuts, est constitué de personnalités marquantes telles que les réalisateurs Cristian Mungiu (Roumanie), Mario Martone (Italie) et Moumen Smihi (Maroc). L’Étoile d’or est attribuée à « Corrections class », premier long métrage du moscovite Ivan I. Tverdoskiy, alors âgé de 26 ans.\n\nLe prix Cinécoles dont le jury est présidé par le cinéaste mauritanien Abderrahman Cissako est décerné à Dalto de Essam Doukhou.\n\nFidèle à sa tradition d’ouvrir des espaces de dialogue avec les grands noms du cinéma mondial, le Festival accueille les cinéastes Bille August (Danemark), Alex de la Iglesia (Espagne) et Benoit Jacquot (France) pour des masterclass.',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
