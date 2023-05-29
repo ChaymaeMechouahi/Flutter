@@ -1,18 +1,16 @@
-
-
-class Image {
+class Imge {
   //déclarer des variables non-nullable qui seront initialisées ultérieurement
   late int id;
   late int num_edition;
   late String img;
 
-  Image({
+  Imge({
     required this.id,
     required this.num_edition,
     required this.img,
   });
 
-  Image.fromJson(Map<String, dynamic> map) {
+  Imge.fromJson(Map<String, dynamic> map) {
     id = map['id'];
     num_edition = map['num_edition'];
     img = map['img'];
@@ -29,5 +27,5 @@ class Image {
   set setNumero(int value) => num_edition = value;
 
   set setImg(String value) => img = value;
-    
+ 
 }

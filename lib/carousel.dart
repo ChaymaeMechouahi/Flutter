@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'modules/image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'controllers/connexion.dart';
+List<int> editions = [18,17,16,15,14,13,12,11];
+List<int> ids = [1,22,39,53,69,84,101,115];
 class MyCarousel extends StatefulWidget {
   final VoidCallback onTap;
 
@@ -12,11 +17,7 @@ class MyCarousel extends StatefulWidget {
 
 class _MyCarouselState extends State<MyCarousel> {
   int _selectedIndex = 0;
-  List<String> _carouselImages = [
-    'https://picsum.photos/id/10/300/200',
-    'https://picsum.photos/id/100/300/200',
-    'https://picsum.photos/id/1000/300/200'
-  ];
+  List<Imge> _carouselImages = [];
 
   CarouselController _carouselController = CarouselController();
 
@@ -26,70 +27,83 @@ class _MyCarouselState extends State<MyCarousel> {
 
     return Column(
       children: [
-        CarouselSlider.builder(
-          itemCount: _carouselImages.length,
-          carouselController: _carouselController,
-          options: CarouselOptions(
-            height: 280,
-            aspectRatio: 16 / 9,
-            viewportFraction: 0.6,
-            initialPage: 0,
-            enableInfiniteScroll: true,
-            reverse: false,
-            autoPlay: true,
-            enlargeCenterPage: true,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-          ),
-          itemBuilder: (BuildContext context, int index, int realIndex) {
-            double imageWidth = screenWidth * 0.6;
+        FutureBuilder<List<Imge>>(
+future: fetchImagesFromAPI(editions, ids) as Future<List<Imge>>?,
+          builder: (BuildContext context, AsyncSnapshot<List<Imge>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            } else if (snapshot.hasError) {
+              return Text('Erreur : ${snapshot.error}');
+            } else {
+              _carouselImages = snapshot.data!;
 
-            return Stack(
-              children: [
-                GestureDetector(
-                  onTap: widget.onTap, // Utilisez la fonction de rappel passée à la classe MyCarousel
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    width: imageWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        image: NetworkImage(_carouselImages[index]),
-                        fit: BoxFit.cover,
-                        colorFilter: _getOpacityFilter(index),
-                      ),
-                    ),
-                  ),
+              return CarouselSlider.builder(
+                itemCount: _carouselImages.length,
+                carouselController: _carouselController,
+                options: CarouselOptions(
+                  height: 280,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 0.6,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: true,
+                  enlargeCenterPage: true,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
                 ),
-                Positioned(
-                  bottom: 10,
-                  left: 10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                itemBuilder: (BuildContext context, int index, int realIndex) {
+                  double imageWidth = screenWidth * 0.6;
+
+                  return Stack(
                     children: [
-                      Text(
-                        'Texte 1',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        onTap: widget.onTap,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          width: imageWidth,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: MemoryImage(base64Decode(_carouselImages[index].getImg)), // Décodez l'image à partir du champ 'img' de l'instance de la classe Image
+                              fit: BoxFit.cover,
+                              colorFilter: _getOpacityFilter(index),
+                            ),
+                          ),
                         ),
                       ),
-                      Text(
-                        'Texte 2',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
+                      Positioned(
+                        bottom: 10,
+                        left: 10,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Texte 1',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Texte 2',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ],
-            );
+                  );
+                },
+              );
+            }
           },
         ),
         SizedBox(height: 20),
@@ -100,6 +114,7 @@ class _MyCarouselState extends State<MyCarousel> {
       ],
     );
   }
+
 
   ColorFilter _getOpacityFilter(int index) {
     double opacity = (index == _selectedIndex) ? 1.0 : 0.5;

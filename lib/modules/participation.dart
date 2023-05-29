@@ -20,10 +20,9 @@ class Partcipation {
     id = map['id'];
     id_participant = map['id_participant'];
     num_edition = map['num_edition'];
-
-    prix = map['nom'];
-    film = map['prenom'];
-    role = map['pays'];
+    prix = map['prix'];
+    film = map['film'];
+    role = map['role'];
   }
 
   int get getId => id;
