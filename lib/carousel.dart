@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'controllers/connexion.dart';
+
 class MyCarousel extends StatefulWidget {
   final VoidCallback onTap;
 
@@ -13,12 +15,30 @@ class MyCarousel extends StatefulWidget {
 class _MyCarouselState extends State<MyCarousel> {
   int _selectedIndex = 0;
   CarouselController _carouselController = CarouselController();
-  List<String> _carouselImages = [
-    'https://marrakech-festival.com/wp-content/uploads/2022/09/img_edition_1.png',
-    'https://marrakech-festival.com/wp-content/uploads/2022/09/img_edition_2.png',
-    'https://marrakech-festival.com/wp-content/uploads/revslider/slider-2/fifm_17e.jpg',
-    'https://marrakech-festival.com/wp-content/uploads/revslider/slider-2/fifm_e.jpg',
-  ];
+  List<String> _carouselImages = [];
+  List<String> _carouselDates = []; // Liste pour stocker les dates
+  List<int> nums = [1, 2, 3, 4, 5]; // Num values for each image
+  List<int> ids = [1, 8, 17, 27, 37];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  Future<void> _fetchData() async {
+    try {
+      List<String> imageUrls = await APIManager.fetchImageData(nums, ids);
+      List<String> editionDates =
+          await APIManager.fetchEditionDates(nums); // Récupérer les dates
+      setState(() {
+        _carouselImages = imageUrls;
+        _carouselDates = editionDates; // Stocker les dates dans la liste
+      });
+    } catch (error) {
+      print('Error fetching data: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +68,9 @@ class _MyCarouselState extends State<MyCarousel> {
                 ),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
                   double imageWidth = screenWidth * 0.5;
+                  int num = nums[index];
+                  String date =
+                      _carouselDates[index]; // Récupérer la date correspondante
 
                   return Stack(
                     children: [
@@ -68,26 +91,37 @@ class _MyCarouselState extends State<MyCarousel> {
                       ),
                       Positioned(
                         bottom: 10,
-                        left: 10,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Texte 1',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
                             ),
-                            Text(
-                              'Texte 2',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                '$num °EDITION',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
+                              Text(
+                                date, // Afficher la date
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -133,6 +167,8 @@ class _MyCarouselState extends State<MyCarousel> {
   List<Widget> _buildDots() {
     return _carouselImages.map((image) {
       int index = _carouselImages.indexOf(image);
+      int num = nums[index];
+
       return Container(
         width: 8,
         height: 8,
@@ -140,6 +176,13 @@ class _MyCarouselState extends State<MyCarousel> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: _selectedIndex == index ? Colors.black : Colors.grey,
+        ),
+        child: Text(
+          '$num',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 10,
+          ),
         ),
       );
     }).toList();
