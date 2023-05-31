@@ -12,9 +12,7 @@ class MyCarousel extends StatefulWidget {
 
 class _MyCarouselState extends State<MyCarousel> {
   int _selectedIndex = 0;
-
   CarouselController _carouselController = CarouselController();
-
   List<String> _carouselImages = [
     'https://marrakech-festival.com/wp-content/uploads/2022/09/img_edition_1.png',
     'https://marrakech-festival.com/wp-content/uploads/2022/09/img_edition_2.png',
@@ -34,7 +32,7 @@ class _MyCarouselState extends State<MyCarousel> {
                 itemCount: _carouselImages.length,
                 carouselController: _carouselController,
                 options: CarouselOptions(
-                  height: 280,
+                  height: 230,
                   aspectRatio: 16 / 9,
                   viewportFraction: 0.6,
                   initialPage: 0,
@@ -49,12 +47,12 @@ class _MyCarouselState extends State<MyCarousel> {
                   },
                 ),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
-                  double imageWidth = screenWidth * 0.6;
+                  double imageWidth = screenWidth * 0.5;
 
                   return Stack(
                     children: [
                       GestureDetector(
-                        onTap: widget.onTap, // Utilize the callback function passed to the MyCarousel class
+                        onTap: widget.onTap,
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           width: imageWidth,
@@ -63,7 +61,7 @@ class _MyCarouselState extends State<MyCarousel> {
                             image: DecorationImage(
                               image: NetworkImage(_carouselImages[index]),
                               fit: BoxFit.cover,
-                              colorFilter: _getOpacityFilter(index),
+                              colorFilter: _getOpacityFilter(),
                             ),
                           ),
                         ),
@@ -105,8 +103,9 @@ class _MyCarouselState extends State<MyCarousel> {
     );
   }
 
-  ColorFilter _getOpacityFilter(int index) {
-    double opacity = (index == _selectedIndex) ? 1.0 : 0.5;
+  ColorFilter _getOpacityFilter() {
+    double opacity =
+        0.5; // Réglez ici l'opacité souhaitée pour toutes les images
     return ColorFilter.matrix([
       opacity,
       0,
