@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'modules/image.dart';
-
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'controllers/connexion.dart';
-List<int> editions = [18,17,16,15,14,13,12,11];
-List<int> ids = [1,22,39,53,69,84,101,115];
+
 class MyCarousel extends StatefulWidget {
   final VoidCallback onTap;
 
@@ -17,9 +12,15 @@ class MyCarousel extends StatefulWidget {
 
 class _MyCarouselState extends State<MyCarousel> {
   int _selectedIndex = 0;
-  List<Imge> _carouselImages = [];
 
   CarouselController _carouselController = CarouselController();
+
+  List<String> _carouselImages = [
+    'https://marrakech-festival.com/wp-content/uploads/2022/09/img_edition_1.png',
+    'https://marrakech-festival.com/wp-content/uploads/2022/09/img_edition_2.png',
+    'https://marrakech-festival.com/wp-content/uploads/revslider/slider-2/fifm_17e.jpg',
+    'https://marrakech-festival.com/wp-content/uploads/revslider/slider-2/fifm_e.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +28,9 @@ class _MyCarouselState extends State<MyCarousel> {
 
     return Column(
       children: [
-        FutureBuilder<List<Imge>>(
-future: fetchImagesFromAPI(editions, ids) as Future<List<Imge>>?,
-          builder: (BuildContext context, AsyncSnapshot<List<Imge>> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Erreur : ${snapshot.error}');
-            } else {
-              _carouselImages = snapshot.data!;
-
-              return CarouselSlider.builder(
+        (_carouselImages.isEmpty)
+            ? CircularProgressIndicator()
+            : CarouselSlider.builder(
                 itemCount: _carouselImages.length,
                 carouselController: _carouselController,
                 options: CarouselOptions(
@@ -61,14 +54,14 @@ future: fetchImagesFromAPI(editions, ids) as Future<List<Imge>>?,
                   return Stack(
                     children: [
                       GestureDetector(
-                        onTap: widget.onTap,
+                        onTap: widget.onTap, // Utilize the callback function passed to the MyCarousel class
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           width: imageWidth,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
-                              image: MemoryImage(base64Decode(_carouselImages[index].getImg)), // Décodez l'image à partir du champ 'img' de l'instance de la classe Image
+                              image: NetworkImage(_carouselImages[index]),
                               fit: BoxFit.cover,
                               colorFilter: _getOpacityFilter(index),
                             ),
@@ -102,10 +95,7 @@ future: fetchImagesFromAPI(editions, ids) as Future<List<Imge>>?,
                     ],
                   );
                 },
-              );
-            }
-          },
-        ),
+              ),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +104,6 @@ future: fetchImagesFromAPI(editions, ids) as Future<List<Imge>>?,
       ],
     );
   }
-
 
   ColorFilter _getOpacityFilter(int index) {
     double opacity = (index == _selectedIndex) ? 1.0 : 0.5;
