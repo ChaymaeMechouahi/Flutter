@@ -47,23 +47,60 @@ class APIManager {
     return imageUrls;
   }
 
- static Future<List<String>> fetchEditionDates(List<int> nums) async {
-  List<String> dates = [];
+  static Future<List<String>> fetchEditionDates(List<int> nums) async {
+    List<String> dates = [];
 
-  for (var num in nums) {
-    var endpoint = 'editions/$num/dateD';
+    for (var num in nums) {
+      var endpoint = 'editions/$num/dateD';
+      var url = Uri.parse('$baseURL/$endpoint');
+
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        var data = response.body;
+        dates.add(data);
+      } else {
+        throw Exception('Failed to fetch edition dates');
+      }
+    }
+
+    return dates;
+  }
+
+  static Future<String> fetchEditionDateF(int num) async {
+    var endpoint = 'editions/$num/dateF';
     var url = Uri.parse('$baseURL/$endpoint');
 
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      var data = response.body;
-      dates.add(data);
+      var dateF = response.body;
+      return dateF;
     } else {
       throw Exception('Failed to fetch edition dates');
     }
   }
 
-  return dates;
-}
+  static Future<String> fetchEditionTitre(int num) async {
+    var endpoint = 'editions/$num/titre';
+    var url = Uri.parse('$baseURL/$endpoint');
 
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var titre = response.body;
+      return titre;
+    } else {
+      throw Exception('Failed to fetch edition title');
+    }
+  }
+    static Future<String> fetchEditionTexte(int num) async {
+    var endpoint = 'editions/$num/texte';
+    var url = Uri.parse('$baseURL/$endpoint');
+
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var texte = response.body;
+      return texte;
+    } else {
+      throw Exception('Failed to fetch edition title');
+    }
+  }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/carousel.dart';
-import 'package:flutter_hello/views/presentation.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -198,23 +197,9 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: MyCarousel(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyArtPage(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
+          Expanded(
+            child: Container(
+              child: MyCarousel(onTap: () {  },), // Utilisation du widget MyCarousel
             ),
           ),
         ],

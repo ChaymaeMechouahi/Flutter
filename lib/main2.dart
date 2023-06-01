@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> imageUrls = [];
+  late String imageUrls = '';
 
   @override
   void initState() {
@@ -35,9 +35,10 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchEditionDates() async {
     List<int> nums = [1, 2, 3, 4, 5];
-
+    int num = 1;
     try {
-      List<String> dates = await APIManager.fetchEditionDates(nums);
+      String dates = await APIManager.fetchEditionTitre(num);
+
       setState(() {
         imageUrls = dates;
       });

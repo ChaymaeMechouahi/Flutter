@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'package:flutter_hello/views/presentation.dart';
 import 'controllers/connexion.dart';
 
 class MyCarousel extends StatefulWidget {
@@ -16,8 +16,8 @@ class _MyCarouselState extends State<MyCarousel> {
   int _selectedIndex = 0;
   CarouselController _carouselController = CarouselController();
   List<String> _carouselImages = [];
-  List<String> _carouselDates = []; // Liste pour stocker les dates
-  List<int> nums = [1, 2, 3, 4, 5]; // Num values for each image
+  List<String> _carouselDates = [];
+  List<int> nums = [1, 2, 3, 4, 5];
   List<int> ids = [1, 8, 17, 27, 37];
 
   @override
@@ -29,15 +29,31 @@ class _MyCarouselState extends State<MyCarousel> {
   Future<void> _fetchData() async {
     try {
       List<String> imageUrls = await APIManager.fetchImageData(nums, ids);
-      List<String> editionDates =
-          await APIManager.fetchEditionDates(nums); // Récupérer les dates
+      List<String> editionDates = await APIManager.fetchEditionDates(nums);
       setState(() {
         _carouselImages = imageUrls;
-        _carouselDates = editionDates; // Stocker les dates dans la liste
+        _carouselDates = editionDates;
       });
     } catch (error) {
       print('Error fetching data: $error');
     }
+  }
+
+  void _storeImageInformation() {
+    String imageUrl = _carouselImages[_selectedIndex];
+    String date = _carouselDates[_selectedIndex];
+    int editionNumber = nums[_selectedIndex];
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MyArtPage(
+          imageUrl: imageUrl,
+          date: date,
+          editionNumber: editionNumber,
+        ),
+      ),
+    );
   }
 
   @override
@@ -69,13 +85,19 @@ class _MyCarouselState extends State<MyCarousel> {
                 itemBuilder: (BuildContext context, int index, int realIndex) {
                   double imageWidth = screenWidth * 0.5;
                   int num = nums[index];
-                  String date =
-                      _carouselDates[index]; // Récupérer la date correspondante
+                  String date = _carouselDates[index];
 
                   return Stack(
                     children: [
                       GestureDetector(
-                        onTap: widget.onTap,
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = index;
+                          });
+                          _storeImageInformation(); // Appel de la fonction pour stocker les informations
+                          widget
+                              .onTap(); // Appel de la fonction onTap fournie dans les paramètres
+                        },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           width: imageWidth,
@@ -114,7 +136,7 @@ class _MyCarouselState extends State<MyCarousel> {
                                 ),
                               ),
                               Text(
-                                date, // Afficher la date
+                                date,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -138,29 +160,11 @@ class _MyCarouselState extends State<MyCarousel> {
   }
 
   ColorFilter _getOpacityFilter() {
-    double opacity =
-        0.5; // Réglez ici l'opacité souhaitée pour toutes les images
     return ColorFilter.matrix([
-      opacity,
-      0,
-      0,
-      0,
-      0,
-      0,
-      opacity,
-      0,
-      0,
-      0,
-      0,
-      0,
-      opacity,
-      0,
-      0,
-      0,
-      0,
-      0,
-      1,
-      0,
+      1, 0, 0, 0, 0, // Red
+      0, 1, 0, 0, 0, // Green
+      0, 0, 1, 0, 0, // Blue
+      0, 0, 0, 1, 0, // Alpha (Opacity)
     ]);
   }
 
