@@ -10,8 +10,14 @@ void scrollToSection(BuildContext context, GlobalKey key) {
     final position = renderObject.localToGlobal(Offset.zero);
     Scrollable.ensureVisible(
       key.currentContext!,
-      alignment: 0.0, // Ajustez la valeur d'alignement si nécessaire
-      duration: Duration(milliseconds: 500), // Ajustez la durée d'animation si nécessaire
+      alignment: 0.0, 
+      duration: Duration(milliseconds: 500), 
     );
   }
+}
+void navigateToPage(BuildContext context, Widget page) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => page),
+  );
 }

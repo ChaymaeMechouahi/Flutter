@@ -3,6 +3,7 @@ import '../controllers/BottomBar.dart';
 import '../controllers/connexion.dart';
 import '../controllers/move.dart';
 import '../galerie.dart';
+import 'edition1.dart';
 
 GlobalKey title = GlobalKey();
 GlobalKey gallery = GlobalKey();
@@ -89,7 +90,9 @@ class _MyArtPageState extends State<MyArtPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: MyBottomAppBar(
-        onAwardsPressed: (BuildContext) {},
+        onAwardsPressed: (BuildContext) {
+          storeInfo();
+        },
         onHomePressed: (BuildContext) {
           retourPagePrincipale(BuildContext);
         },
@@ -289,6 +292,25 @@ class _MyArtPageState extends State<MyArtPage> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  void storeInfo() {
+    String imageUrl = widget.imageUrl;
+    String date = widget.date;
+    String dateF = DateF;
+    int editionNumber = widget.editionNumber;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditionUn(
+          imageUrl: imageUrl,
+          date: date,
+          editionNumber: editionNumber,
+          dateF: dateF,
+        ),
       ),
     );
   }

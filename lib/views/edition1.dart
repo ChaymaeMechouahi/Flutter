@@ -2,46 +2,58 @@ import 'package:flutter/material.dart';
 
 import '../controllers/BottomBar.dart';
 import '../controllers/move.dart';
-import '../galerie.dart';
 
-GlobalKey title = GlobalKey();
-GlobalKey gallery = GlobalKey();
+GlobalKey palmares = GlobalKey();
+GlobalKey jury = GlobalKey();
+class EditionUn extends StatefulWidget {
+  final String imageUrl;
+  final String date;
+  final int editionNumber;
+  final String dateF;
 
-class EditionOne extends StatelessWidget {
-  final List<String> imageUrls = [
-    'https://picsum.photos/id/10/300/200',
-    'https://picsum.photos/id/100/300/200',
-    'https://picsum.photos/id/1000/300/200'
-  ];
+  EditionUn({
+    required this.imageUrl,
+    required this.date,
+    required this.editionNumber,
+    required this.dateF,
+  });
 
+  @override
+  _EditionUnState createState() => _EditionUnState();
+}
+
+class _EditionUnState extends State<EditionUn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: MyBottomAppBar(
-        onAwardsPressed: (BuildContext) {},
-        onHomePressed: (BuildContext) {
-          retourPagePrincipale(BuildContext);
-        },
+        onAwardsPressed: (BuildContext context) {},
+        onHomePressed: retourPagePrincipale, // Use the function directly without passing its result
       ),
-      body: SingleChildScrollView(
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            final double screenWidth = constraints.maxWidth;
-            final double imageHeight =
-                screenWidth / MediaQuery.of(context).size.aspectRatio * 0.7;
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          final double screenWidth = constraints.maxWidth;
+          final double imageHeight =
+              screenWidth / MediaQuery.of(context).size.aspectRatio * 0.7;
 
-            return Column(
+          return SingleChildScrollView(
+            child: Column(
               children: [
                 Stack(
                   children: [
-                    Container(
-                      width: screenWidth,
-                      height: imageHeight,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              'https://picsum.photos/id/1000/300/200'),
-                          fit: BoxFit.cover,
+                    ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.5),
+                        BlendMode.darken,
+                      ),
+                      child: Container(
+                        width: screenWidth,
+                        height: imageHeight,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(widget.imageUrl),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -52,244 +64,51 @@ class EditionOne extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Titre en gras en noir',
+                            '${widget.editionNumber}° EDITION',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'Première ligne de la date',
-                            style: TextStyle(fontSize: 14),
+                            'Du : ${widget.date}',
+                            style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                           Text(
-                            'Deuxième ligne de la date',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  scrollToSection(context,
-                                      title); // Naviguer vers l'article
-                                },
-                                child: TextButton(
-                                  onPressed:
-                                      null, // Supprimez null et ajoutez votre action ici
-                                  child: Text(
-                                    'Lire l\'article',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              GestureDetector(
-                                onTap: () {
-                                  scrollToSection(context,
-                                      gallery); // Naviguer vers la gallerie
-                                },
-                                child: TextButton(
-                                  onPressed:
-                                      null, // Supprimez null et ajoutez votre action ici
-                                  child: Text(
-                                    'Gallerie',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                            'Au : ${widget.dateF}',
+                            style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                //Palmares
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Center(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              key: gallery,
-                              'PALMARES',
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: Colors.brown,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: Center(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: RichText(
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.brown,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Voir ',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.brown,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'plus',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.brown,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      //Palmares Court Metrage
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: Center(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    key: gallery,
-                                    'PALMARES COURT METRAGE',
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      color: Colors.brown,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Center(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: RichText(
-                                    text: TextSpan(
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.brown,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: 'Voir ',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.brown,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: 'plus',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.brown,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      MyGalerie(imageUrls: imageUrls),
-                    ],
-                  ),
+                Container(
+                  // Composants spécifiques à l'édition
+                  child: buildEditionSpecificContent(),
                 ),
-                //Ma gallerie
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Center(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              key: gallery,
-                              'GALERIE',
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: Colors.brown,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: Center(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: RichText(
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.brown,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Voir ',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.brown,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'plus',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.brown,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 16),
-                MyGalerie(imageUrls: imageUrls),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
+  }
+
+  Widget buildEditionSpecificContent() {
+    // Ajoutez les conditions ou boucles pour afficher les composants spécifiques à chaque édition
+    // Utilisez les valeurs de widget.imageUrl, widget.date, widget.editionNumber, widget.dateF pour déterminer le contenu à afficher
+    // Retournez le widget approprié pour chaque édition
+
+    // Exemple : Afficher un texte différent pour chaque édition
+    if (widget.editionNumber == 1) {
+      return Text('Contenu de l\'édition 1');
+    } else if (widget.editionNumber == 2) {
+      return Text('Contenu de l\'édition 2');
+    } else {
+      return Text('Contenu par défaut');
+    }
   }
 }
