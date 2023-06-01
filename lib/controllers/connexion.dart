@@ -46,7 +46,7 @@ class APIManager {
 
     return imageUrls;
   }
-
+//Fonction qui permet de récupérer les dates pour la page d'acceuil
   static Future<List<String>> fetchEditionDates(List<int> nums) async {
     List<String> dates = [];
 
@@ -65,7 +65,7 @@ class APIManager {
 
     return dates;
   }
-
+//fonction pour récupérer la datde fin 
   static Future<String> fetchEditionDateF(int num) async {
     var endpoint = 'editions/$num/dateF';
     var url = Uri.parse('$baseURL/$endpoint');
@@ -78,6 +78,7 @@ class APIManager {
       throw Exception('Failed to fetch edition dates');
     }
   }
+//fonction pour récupérer le titre d'une édition
 
   static Future<String> fetchEditionTitre(int num) async {
     var endpoint = 'editions/$num/titre';
@@ -91,6 +92,8 @@ class APIManager {
       throw Exception('Failed to fetch edition title');
     }
   }
+  //fonction pour récupérer le texte d'une édition
+
     static Future<String> fetchEditionTexte(int num) async {
     var endpoint = 'editions/$num/texte';
     var url = Uri.parse('$baseURL/$endpoint');
@@ -103,4 +106,35 @@ class APIManager {
       throw Exception('Failed to fetch edition title');
     }
   }
+  //fonction pour récupérer les lien des images d'une édition
+  static Future<List<String>> fetchImageUrlList(int editionNumber) async {
+  List<String> imageUrls = [];
+
+  var endpoint = 'images/$editionNumber';
+  var url = Uri.parse('$baseURL/$endpoint');
+
+  var response = await http.get(url);
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body);
+
+    if (data is List && data.length > 1) {
+      for (var i = 1; i < data.length; i++) {
+        var item = data[i];
+        var encodedImage = item['img'];
+        var decodedImage = base64.decode(encodedImage);
+        var imageUrl = utf8.decode(decodedImage);
+        if (imageUrl != null) {
+          imageUrls.add(imageUrl);
+        }
+      }
+    } else {
+      throw Exception('Invalid response format or no image URLs found');
+    }
+  } else {
+    throw Exception('Failed to fetch image data');
+  }
+
+  return imageUrls;
+}
+
 }

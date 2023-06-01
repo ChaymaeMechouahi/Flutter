@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../controllers/BottomBar.dart';
 import '../controllers/connexion.dart';
 import '../controllers/move.dart';
+import '../galerie.dart';
 
 GlobalKey title = GlobalKey();
 GlobalKey gallery = GlobalKey();
@@ -26,6 +26,7 @@ class _MyArtPageState extends State<MyArtPage> {
   String DateF = '';
   String titre = '';
   String texte = '';
+  List<String> imageUrls = []; // Updated: Initialize imageUrls as an empty list
 
   @override
   void initState() {
@@ -33,6 +34,7 @@ class _MyArtPageState extends State<MyArtPage> {
     fetchEditionDate();
     fetchEditionTitre();
     fetchEditionTexte();
+    fetchImageUrlList();
   }
 
   void fetchEditionDate() async {
@@ -43,7 +45,6 @@ class _MyArtPageState extends State<MyArtPage> {
         DateF = editionDate;
       });
     } catch (error) {
-      // Gérer l'erreur
       print('Erreur lors de la récupération de la date de l\'édition: $error');
     }
   }
@@ -56,8 +57,7 @@ class _MyArtPageState extends State<MyArtPage> {
         titre = editionTitre;
       });
     } catch (error) {
-      // Gérer l'erreur
-      print('Erreur lors de la récupération de lu titre de l\'édition: $error');
+      print('Erreur lors de la récupération du titre de l\'édition: $error');
     }
   }
 
@@ -69,8 +69,19 @@ class _MyArtPageState extends State<MyArtPage> {
         texte = editionTexte;
       });
     } catch (error) {
-      // Gérer l'erreur
-      print('Erreur lors de la récupération du texte  de l\'édition: $error');
+      print('Erreur lors de la récupération du texte de l\'édition: $error');
+    }
+  }
+
+  void fetchImageUrlList() async {
+    try {
+      List<String> fetchedImageUrls =
+          await APIManager.fetchImageUrlList(widget.editionNumber);
+      setState(() {
+        imageUrls = fetchedImageUrls;
+      });
+    } catch (error) {
+      print('Erreur lors de la récupération des URLs des images: $error');
     }
   }
 
@@ -156,7 +167,7 @@ class _MyArtPageState extends State<MyArtPage> {
                               GestureDetector(
                                 onTap: () {
                                   scrollToSection(context,
-                                      gallery); // Naviguer vers la gallerie
+                                      gallery); // Naviguer vers la galerie
                                 },
                                 child: TextButton(
                                   onPressed:
@@ -268,7 +279,9 @@ class _MyArtPageState extends State<MyArtPage> {
                         ),
                       ),
                       SizedBox(height: 16),
-                      // MyGalerie(imageUrls: imageUrls), // Appel à MyGalerie
+                      imageUrls.isNotEmpty
+                          ? MyGalerie(imageUrls: imageUrls)
+                          : CircularProgressIndicator(),
                     ],
                   ),
                 ),
