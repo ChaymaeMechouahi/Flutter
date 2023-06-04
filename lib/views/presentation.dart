@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../controllers/BottomBar.dart';
 import '../controllers/connexion.dart';
 import '../controllers/move.dart';
-import '../galerie.dart';
+import 'galerie.dart';
 import 'awards.dart';
 
 GlobalKey title = GlobalKey();

@@ -3,8 +3,19 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class Palmares extends StatefulWidget {
   final List<String> imageUrls; // Tableau des URLs des images
+  final List<String> films;
+  final List<String> awards;
+  final List<String> noms;
+  final List<String> pays;
 
-  Palmares({Key? key, required this.imageUrls}) : super(key: key);
+  Palmares(
+      {Key? key,
+      required this.imageUrls,
+      required this.awards,
+      required this.films,
+      required this.noms,
+      required this.pays})
+      : super(key: key);
 
   @override
   _PalmaresState createState() => _PalmaresState();
@@ -73,11 +84,12 @@ class _PalmaresState extends State<Palmares> {
                         ),
                         SizedBox(width: 5),
                         Text(
-                          'Texte au-dessus de l\'image',
+                          widget.awards.length > index
+                              ? widget.awards[index]
+                              : '',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -90,27 +102,32 @@ class _PalmaresState extends State<Palmares> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Titre principal',
+                          widget.films.length > index
+                              ? widget.films[index]
+                              : '', // Vérification de la longueur et de l'index
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
                           ),
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Titre secondaire',
+                          widget.noms.length > index
+                              ? widget.noms[index]
+                              : '', // Vérification de la longueur et de l'index
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 12,
                           ),
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Titre en brun clair',
+                          widget.pays.length > index
+                              ? widget.pays[index]
+                              : '', // Vérification de la longueur et de l'index
                           style: TextStyle(
-                            color: Colors.brown[200],
-                            fontSize: 16,
+                            color: Colors.white,
+                            fontSize: 12,
                           ),
                         ),
                       ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_hello/views/presentation.dart';
-import 'controllers/connexion.dart';
+import '../controllers/connexion.dart';
 
 class MyCarousel extends StatefulWidget {
   final VoidCallback onTap;

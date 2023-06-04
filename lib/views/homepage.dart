@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hello/carousel.dart';
+import 'package:flutter_hello/views/carousel.dart';
 
 class HomePage extends StatelessWidget {
   @override
