@@ -1,24 +1,24 @@
-class Partcipant {
-  //déclarer des variables non-nullable qui seront initialisées ultérieurement
+class Participant {
   late int id;
   late String nom;
   late String prenom;
   late String pays;
 
-  Partcipant({
+  Participant({
     required this.id,
     required this.nom,
     required this.prenom,
     required this.pays,
   });
 
-  Partcipant.fromJson(Map<String, dynamic> map) {
-    id = map['id'];
-    nom = map['nom'];
-    prenom = map['prenom'];
-    pays = map['pays'];
-  }
-
+ factory Participant.fromJson(Map<String, dynamic> json) {
+  return Participant(
+    id: json['id'],
+    nom: json['nom'],
+    prenom: json['prenom'],
+    pays: json['pays'],
+  );
+}
   int get getId => id;
 
   String get getNom => nom;

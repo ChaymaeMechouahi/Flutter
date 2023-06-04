@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../modules/participant.dart';
 
 class APIManager {
   static const String baseURL = 'http://192.168.1.112:3005';
@@ -108,20 +109,22 @@ class APIManager {
       throw Exception('Failed to fetch edition title');
     }
   }
-static Future<String> fetchImage(int num, int id) async {
-  var endpoint = 'images/$num/$id';
-  var url = Uri.parse('$baseURL/$endpoint');
 
-  var response = await http.get(url);
-  if (response.statusCode == 200) {
-    var jsonResponse = json.decode(response.body);
-    var encodedUrl = jsonResponse['img'];
-    var decodedUrl = utf8.decode(base64.decode(encodedUrl));
-    return decodedUrl;
-  } else {
-    throw Exception('Failed to fetch image url');
+  static Future<String> fetchImage(int num, int id) async {
+    var endpoint = 'images/$num/$id';
+    var url = Uri.parse('$baseURL/$endpoint');
+
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = json.decode(response.body);
+      var encodedUrl = jsonResponse['img'];
+      var decodedUrl = utf8.decode(base64.decode(encodedUrl));
+      return decodedUrl;
+    } else {
+      throw Exception('Failed to fetch image url');
+    }
   }
-}
+
   //fonction pour récupérer les lien des images d'une édition
   static Future<List<String>> fetchImageUrlList(int editionNumber) async {
     List<String> imageUrls = [];
@@ -281,5 +284,25 @@ static Future<String> fetchImage(int num, int id) async {
     }
 
     return pays;
+  }
+
+  static Future<List<Participant>> fetchParticipants(List<int> ids) async {
+    List<Participant> participants = [];
+
+    for (int id in ids) {
+      var endpoint = 'participants/$id';
+      var url = Uri.parse('$baseURL/$endpoint');
+
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        var jsonData = json.decode(response.body);
+        var participant = Participant.fromJson(jsonData);
+        participants.add(participant);
+      } else {
+        throw Exception('Failed to fetch participant with ID: $id');
+      }
+    }
+
+    return participants;
   }
 }

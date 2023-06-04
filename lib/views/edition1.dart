@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../controllers/connexion.dart';
+import '../modules/participant.dart';
 import 'Palmares.dart';
 import 'jury.dart';
 
@@ -13,7 +14,6 @@ class EditionUn extends StatefulWidget {
   @override
   _EditionUnState createState() => _EditionUnState();
 }
-
 class _EditionUnState extends State<EditionUn> {
   List<int> ids = [2, 3, 4, 5];
   List<int> idsNom = [1, 2, 4, 5];
@@ -28,6 +28,7 @@ class _EditionUnState extends State<EditionUn> {
   List<String> filmsList = [];
   List<String> nomsList = [];
   List<String> paysList = [];
+  List<Participant> juryParticipants = [];
 
   @override
   void initState() {
@@ -38,7 +39,7 @@ class _EditionUnState extends State<EditionUn> {
     _nomsFuture = _fetchEditionNoms();
     _paysFuture = _fetchEditionPays();
     _imageUrlFuture = _fetchImageUrl();
-  }
+  _fetchJuryParticipants();   }
 
   Future<List<String>> _fetchEditionAwards() async {
     try {
@@ -112,6 +113,20 @@ class _EditionUnState extends State<EditionUn> {
     }
   }
 
+  Future<void> _fetchJuryParticipants() async {
+  try {
+    List<Participant> participants = await APIManager.fetchParticipants([6, 7, 8, 9, 10, 11, 12]);
+    if (participants != null && participants.isNotEmpty) {
+      setState(() {
+        juryParticipants = participants;
+      });
+    } else {
+      print('Aucun participant du jury trouvé');
+    }
+  } catch (error) {
+    print('Erreur lors de la récupération des participants du jury: $error');
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -166,7 +181,10 @@ class _EditionUnState extends State<EditionUn> {
               future: _fetchImage(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Jury(imageUrl: snapshot.data!);
+                  return Jury(
+                    imageUrl: snapshot.data!,
+                    participants: juryParticipants,
+                  );
                 } else if (snapshot.hasError) {
                   return Text(
                       'Erreur lors de la récupération de l\'URL de l\'image');
@@ -174,7 +192,7 @@ class _EditionUnState extends State<EditionUn> {
                 return CircularProgressIndicator();
               },
             ),
-          ], // Ajout de la parenthèse fermante
+          ],
         ),
       ),
     );
