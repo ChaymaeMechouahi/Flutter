@@ -9,63 +9,59 @@ class Jury extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 300,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Jury',
-                  style: TextStyle(
-                    fontSize: 20, 
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  'Voir Plus',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.75,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  imageUrl,
-                  fit: BoxFit.cover,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Jury',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              Text(
+                'Voir Plus',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.75,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
             ),
-            SizedBox(height: 10),
-            Container(
-              height: 150, // Hauteur fixe pour la liste des participants
-              child: ListView.separated(
-                itemCount: participants.length,
-                separatorBuilder: (context, index) =>
-                    SizedBox(height: 0), // Aucun espace entre les éléments
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                        '${participants[index].getNom} ${participants[index].getPrenom}'),
-                    subtitle: Text(participants[index].getPays),
-                  );
-                },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
               ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            height: 150, // Hauteur fixe pour la liste des participants
+            child: ListView.separated(
+              itemCount: participants.length,
+              separatorBuilder: (context, index) =>
+                  SizedBox(height: 0), // Aucun espace entre les éléments
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(
+                      '${participants[index].getNom} ${participants[index].getPrenom}'),
+                  subtitle: Text(participants[index].getPays),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

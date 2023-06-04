@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/views/oneAward.dart';
 import '../controllers/connexion.dart';
 import '../modules/participant.dart';
 import 'Palmares.dart';
@@ -14,6 +15,7 @@ class EditionUn extends StatefulWidget {
   @override
   _EditionUnState createState() => _EditionUnState();
 }
+
 class _EditionUnState extends State<EditionUn> {
   List<int> ids = [2, 3, 4, 5];
   List<int> idsNom = [1, 2, 4, 5];
@@ -29,7 +31,7 @@ class _EditionUnState extends State<EditionUn> {
   List<String> nomsList = [];
   List<String> paysList = [];
   List<Participant> juryParticipants = [];
-
+  late Future<List<String>> _imageTwo;
   @override
   void initState() {
     super.initState();
@@ -39,7 +41,10 @@ class _EditionUnState extends State<EditionUn> {
     _nomsFuture = _fetchEditionNoms();
     _paysFuture = _fetchEditionPays();
     _imageUrlFuture = _fetchImageUrl();
-  _fetchJuryParticipants();   }
+    _imageTwo = _fetchImageTwo();
+
+    _fetchJuryParticipants();
+  }
 
   Future<List<String>> _fetchEditionAwards() async {
     try {
@@ -114,19 +119,31 @@ class _EditionUnState extends State<EditionUn> {
   }
 
   Future<void> _fetchJuryParticipants() async {
-  try {
-    List<Participant> participants = await APIManager.fetchParticipants([6, 7, 8, 9, 10, 11, 12]);
-    if (participants != null && participants.isNotEmpty) {
-      setState(() {
-        juryParticipants = participants;
-      });
-    } else {
-      print('Aucun participant du jury trouvé');
+    try {
+      List<Participant> participants =
+          await APIManager.fetchParticipants([6, 7, 8, 9, 10, 11, 12]);
+      if (participants != null && participants.isNotEmpty) {
+        setState(() {
+          juryParticipants = participants;
+        });
+      } else {
+        print('Aucun participant du jury trouvé');
+      }
+    } catch (error) {
+      print('Erreur lors de la récupération des participants du jury: $error');
     }
-  } catch (error) {
-    print('Erreur lors de la récupération des participants du jury: $error');
   }
-}
+
+  Future<List<String>> _fetchImageTwo() async {
+    try {
+      List<String> imageUrl = await APIManager.fetchImageUrl([13], 1);
+      return imageUrl;
+    } catch (error) {
+      print('Erreur lors de la récupération de l\'URL de l\'image: $error');
+      return [];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -192,6 +209,7 @@ class _EditionUnState extends State<EditionUn> {
                 return CircularProgressIndicator();
               },
             ),
+           
           ],
         ),
       ),
