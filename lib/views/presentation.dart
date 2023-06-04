@@ -3,7 +3,7 @@ import '../controllers/BottomBar.dart';
 import '../controllers/connexion.dart';
 import '../controllers/move.dart';
 import '../galerie.dart';
-import 'edition1.dart';
+import 'awards.dart';
 
 GlobalKey title = GlobalKey();
 GlobalKey gallery = GlobalKey();
@@ -78,6 +78,9 @@ class _MyArtPageState extends State<MyArtPage> {
     try {
       List<String> fetchedImageUrls =
           await APIManager.fetchImageUrlList(widget.editionNumber);
+      print(widget.editionNumber);
+            print(fetchedImageUrls);
+
       setState(() {
         imageUrls = fetchedImageUrls;
       });
@@ -305,7 +308,7 @@ class _MyArtPageState extends State<MyArtPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => EditionUn(
+        builder: (context) => Edit(
           imageUrl: imageUrl,
           date: date,
           editionNumber: editionNumber,

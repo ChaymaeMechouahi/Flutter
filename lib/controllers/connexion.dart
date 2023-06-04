@@ -136,5 +136,59 @@ class APIManager {
 
   return imageUrls;
 }
+//fonction pour récupérer le texte d'une édition
+
+    static Future<String> fetchParticipationAwards(int num) async {
+    var endpoint = 'editions/$num/texte';
+    var url = Uri.parse('$baseURL/$endpoint');
+
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var texte = response.body;
+      return texte;
+    } else {
+      throw Exception('Failed to fetch edition title');
+    }
+  }
+ static Future<List<String>> fetchImageUrl(List<int> ids, int num) async {
+  List<String> imageUrls = [];
+
+  for (var i = 0; i < ids.length; i++) {
+    var id = ids[i];
+    var endpoint = 'images/$num/$id';
+    var url = Uri.parse('$baseURL/$endpoint');
+    print(url);
+
+    var response = await http.get(url);
+    print('Bonjour $response');
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      if (data is Map<String, dynamic>) {
+        var encodedImage = data['img'];
+        var decodedBytes = base64.decode(encodedImage);
+        var imageUrl = utf8.decode(decodedBytes);
+        if (imageUrl != null) {
+          imageUrls.add(imageUrl);
+        }
+      } else if (data is Iterable) {
+        for (var item in data) {
+          var encodedImage = item['img'];
+          var decodedBytes = base64.decode(encodedImage);
+          var imageUrl = utf8.decode(decodedBytes);
+          if (imageUrl != null) {
+            imageUrls.add(imageUrl);
+          }
+        }
+      } else {
+        throw Exception('Invalid response format');
+      }
+    } else {
+      throw Exception('Failed to fetch image data');
+    }
+  }
+
+  return imageUrls;
+}
 
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_hello/views/edition1.dart';
 import 'controllers/connexion.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late String imageUrls = '';
+  late List<String> imageUrls = [];
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     List<int> nums = [1, 2, 3, 4, 5];
     int num = 1;
     try {
-      String dates = await APIManager.fetchEditionTitre(num);
+      List<String> dates = await APIManager.fetchImageUrl(nums,num);
 
       setState(() {
         imageUrls = dates;
@@ -57,9 +57,7 @@ class _HomePageState extends State<HomePage> {
         child: ListView.builder(
           itemCount: imageUrls.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(imageUrls[index]),
-            );
+            return EditionUn(editionNumber: index + 1);
           },
         ),
       ),

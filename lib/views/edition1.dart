@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
+import '../controllers/connexion.dart';
+import '../Palmares.dart';
 
-import '../controllers/BottomBar.dart';
-import '../controllers/move.dart';
-
-GlobalKey palmares = GlobalKey();
-GlobalKey jury = GlobalKey();
 class EditionUn extends StatefulWidget {
-  final String imageUrl;
-  final String date;
   final int editionNumber;
-  final String dateF;
 
   EditionUn({
-    required this.imageUrl,
-    required this.date,
     required this.editionNumber,
-    required this.dateF,
   });
 
   @override
@@ -23,92 +14,74 @@ class EditionUn extends StatefulWidget {
 }
 
 class _EditionUnState extends State<EditionUn> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: MyBottomAppBar(
-        onAwardsPressed: (BuildContext context) {},
-        onHomePressed: retourPagePrincipale, // Use the function directly without passing its result
-      ),
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          final double screenWidth = constraints.maxWidth;
-          final double imageHeight =
-              screenWidth / MediaQuery.of(context).size.aspectRatio * 0.7;
+  List<int> ids = [2, 3, 4, 5];
+  int num = 1;
+  late Future<List<String>> _imageUrlsFuture;
 
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.5),
-                        BlendMode.darken,
-                      ),
-                      child: Container(
-                        width: screenWidth,
-                        height: imageHeight,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(widget.imageUrl),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 16,
-                      left: 16,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${widget.editionNumber}° EDITION',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Du : ${widget.date}',
-                            style: TextStyle(fontSize: 14, color: Colors.white),
-                          ),
-                          Text(
-                            'Au : ${widget.dateF}',
-                            style: TextStyle(fontSize: 14, color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  // Composants spécifiques à l'édition
-                  child: buildEditionSpecificContent(),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    );
+  @override
+  void initState() {
+    super.initState();
+    _imageUrlsFuture = _fetchImageUrl();
   }
 
-  Widget buildEditionSpecificContent() {
-    // Ajoutez les conditions ou boucles pour afficher les composants spécifiques à chaque édition
-    // Utilisez les valeurs de widget.imageUrl, widget.date, widget.editionNumber, widget.dateF pour déterminer le contenu à afficher
-    // Retournez le widget approprié pour chaque édition
-
-    // Exemple : Afficher un texte différent pour chaque édition
-    if (widget.editionNumber == 1) {
-      return Text('Contenu de l\'édition 1');
-    } else if (widget.editionNumber == 2) {
-      return Text('Contenu de l\'édition 2');
-    } else {
-      return Text('Contenu par défaut');
+  Future<List<String>> _fetchImageUrl() async {
+    try {
+      List<String> imageUrls = await APIManager.fetchImageUrl(ids, num);
+      return imageUrls;
+    } catch (error) {
+      print('Erreur lors de la récupération des URLs des images: $error');
+      return [];
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Palmarès',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Voir plus',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            FutureBuilder<List<String>>(
+              future: _imageUrlsFuture,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Palmares(imageUrls: snapshot.data!);
+                } else if (snapshot.hasError) {
+                  return Text(
+                      'Erreur lors de la récupération des URLs des images');
+                }
+                // Show a progress indicator while loading
+                return Center(child: CircularProgressIndicator());
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
