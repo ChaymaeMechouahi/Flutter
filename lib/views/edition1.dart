@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/oneAward.dart';
 import '../controllers/connexion.dart';
 import '../modules/participant.dart';
+import '../modules/participation.dart';
 import 'Palmares.dart';
 import 'jury.dart';
 
@@ -32,6 +33,9 @@ class _EditionUnState extends State<EditionUn> {
   List<String> paysList = [];
   List<Participant> juryParticipants = [];
   late Future<List<String>> _imageTwo;
+  List<Participant> PcourtParticipants = [];
+  List<Partcipation> participationsList = [];
+  late Future<List<String>> _fetchedImage;
   @override
   void initState() {
     super.initState();
@@ -42,8 +46,41 @@ class _EditionUnState extends State<EditionUn> {
     _paysFuture = _fetchEditionPays();
     _imageUrlFuture = _fetchImageUrl();
     _imageTwo = _fetchImageTwo();
-
+    _fetchData();
     _fetchJuryParticipants();
+    _fetchPCourtParticipants();
+    _fetchedImage = _fetchImageThree();
+  }
+
+  Future<List<Partcipation>> _fetchData() async {
+    List<Partcipation> participations = [];
+
+    try {
+      List<String> awards =
+          await APIManager.fetchParticipationAwards([13], num);
+      List<String> films = await APIManager.fetchEditionFilms([13], num);
+      for (int i = 0; i < awards.length; i++) {
+        Partcipation participation = Partcipation(
+          id: 13,
+          id_participant: 13,
+          film: '',
+          num_edition: 1,
+          role: '',
+          prix: '',
+        );
+        participation.setPrix(awards[i]);
+        participation.setFilm(films[i]);
+        participations.add(participation);
+        setState(() {
+          participationsList = participations;
+        });
+      }
+    } catch (error) {
+      print('erreur: $error');
+      return [];
+    }
+
+    return participations;
   }
 
   Future<List<String>> _fetchEditionAwards() async {
@@ -144,6 +181,31 @@ class _EditionUnState extends State<EditionUn> {
     }
   }
 
+  Future<List<String>> _fetchImageThree() async {
+    try {
+      List<String> imageUrl = await APIManager.fetchImageUrl([7], 1);
+      return imageUrl;
+    } catch (error) {
+      print('Erreur lors de la récupération de l\'URL de l\'image: $error');
+      return [];
+    }
+  }
+
+  Future<void> _fetchPCourtParticipants() async {
+    try {
+      List<Participant> participants = await APIManager.fetchParticipants([13]);
+      if (participants != null && participants.isNotEmpty) {
+        setState(() {
+          PcourtParticipants = participants;
+        });
+      } else {
+        print('Aucun participant trouvé');
+      }
+    } catch (error) {
+      print('Erreur lors de la récupération des participants : $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -209,7 +271,23 @@ class _EditionUnState extends State<EditionUn> {
                 return CircularProgressIndicator();
               },
             ),
-           
+            SizedBox(height: 20),
+            FutureBuilder<List<String>>(
+              future: _fetchedImage,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return PCourt(
+                    imageUrl: snapshot.data!,
+                    participation: participationsList,
+                    participants: PcourtParticipants,
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(
+                      'Erreur lors de la récupération de l\'URL de l\'image');
+                }
+                return CircularProgressIndicator();
+              },
+            ),
           ],
         ),
       ),

@@ -1,5 +1,4 @@
 class Partcipation {
-  //déclarer des variables non-nullable qui seront initialisées ultérieurement
   late int id;
   late int id_participant;
   late int num_edition;
@@ -35,13 +34,27 @@ class Partcipation {
 
   String get getRole => role;
 
-  set setId(int value) => id = value;
-  set setIdP(int value) => id_participant = value;
-  set setNum(int value) => num_edition = value;
+  set setId(int value) {
+    id = value;
+  }
 
-  set setPrix(String value) => prix = value;
+  set setIdP(int value) {
+    id_participant = value;
+  }
 
-  set setFilm(String value) => film = value;
+  set setNum(int value) {
+    num_edition = value;
+  }
 
-  set setRole(String value) => role = value;
+  set setRole(String value) {
+    role = value;
+  }
+
+  void setFilm(String film) {
+    film = film;
+  }
+
+  void setPrix(String award) {
+    prix = award;
+  }
 }

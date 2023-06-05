@@ -1,30 +1,24 @@
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hello/modules/participation.dart';
 
-class Award extends StatefulWidget {
-  final List<String> imageUrls;
-  final List<String> films;
-  final List<String> awards;
-  final List<String> noms;
-  final List<String> pays;
+import '../modules/participant.dart';
 
-  Award(
-      {Key? key,
-      required this.imageUrls,
-      required this.awards,
-      required this.films,
-      required this.noms,
-      required this.pays})
-      : super(key: key);
-
+class PCourt extends StatefulWidget {
+  final List<String> imageUrl;
+  final List<Partcipation> participation;
+  final List<Participant> participants;
+  PCourt(
+      {required this.imageUrl,
+      required this.participation,
+      required this.participants});
   @override
-  _AwardState createState() => _AwardState();
+  _PCourtState createState() => _PCourtState();
 }
 
-class _AwardState extends State<Award> {
+class _PCourtState extends State<PCourt> {
   int _selectedIndex = 0;
   CarouselController _carouselController = CarouselController();
-
   @override
   Widget build(BuildContext context) {
     double imageHeight = 350.0; // Hauteur fixe pour toutes les images
@@ -32,18 +26,26 @@ class _AwardState extends State<Award> {
     double imageWidth = screenWidth * 0.7;
     return Column(
       children: [
+        Text(
+          'PALMARES ET COURT METRAGE',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 10),
         CarouselSlider.builder(
-          itemCount: widget.imageUrls.length,
+          itemCount: widget.imageUrl.length,
           carouselController: _carouselController,
           options: CarouselOptions(
             height: imageWidth,
             aspectRatio: 1,
             viewportFraction: 0.7,
             initialPage: 0,
-            enableInfiniteScroll: true,
+            enableInfiniteScroll: false,
             reverse: false,
-            autoPlay: true,
-            enlargeCenterPage: false,
+            autoPlay: false,
+            enlargeCenterPage: true,
             onPageChanged: (index, reason) {
               setState(() {
                 _selectedIndex = index;
@@ -66,7 +68,7 @@ class _AwardState extends State<Award> {
                         BlendMode.srcOver,
                       ),
                       child: Image.network(
-                        widget.imageUrls[index],
+                        widget.imageUrl[index],
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -83,8 +85,9 @@ class _AwardState extends State<Award> {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        widget.awards.length > index
-                            ? widget.awards[index]
+                        (widget.participation.isNotEmpty &&
+                                index < widget.participation.length)
+                            ? widget.participation[index].prix
                             : '',
                         style: TextStyle(
                           color: Colors.white,
@@ -101,9 +104,10 @@ class _AwardState extends State<Award> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.films.length > index
-                            ? widget.films[index]
-                            : '', // Vérification de la longueur et de l'index
+                        (widget.participation.isNotEmpty &&
+                                index < widget.participation.length)
+                            ? widget.participation[index].film
+                            : '',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -111,9 +115,14 @@ class _AwardState extends State<Award> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        widget.noms.length > index
-                            ? widget.noms[index]
-                            : '', // Vérification de la longueur et de l'index
+                        (widget.participation.isNotEmpty &&
+                                index < widget.participation.length &&
+                                widget.participants.isNotEmpty &&
+                                index < widget.participants.length)
+                            ? widget.participants[index].nom +
+                                ' ' +
+                                widget.participants[index].prenom
+                            : '',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -121,9 +130,12 @@ class _AwardState extends State<Award> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        widget.pays.length > index
-                            ? widget.pays[index]
-                            : '', // Vérification de la longueur et de l'index
+                        (widget.participation.isNotEmpty &&
+                                index < widget.participation.length &&
+                                widget.participants.isNotEmpty &&
+                                index < widget.participants.length)
+                            ? widget.participants[index].pays
+                            : '',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -136,7 +148,27 @@ class _AwardState extends State<Award> {
             );
           },
         ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _buildDots(),
+        ),
       ],
     );
+  }
+
+  List<Widget> _buildDots() {
+    return widget.imageUrl.map((image) {
+      int index = widget.imageUrl.indexOf(image);
+      return Container(
+        width: 8,
+        height: 8,
+        margin: EdgeInsets.symmetric(horizontal: 4),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: _selectedIndex == index ? Colors.black : Colors.grey,
+        ),
+      );
+    }).toList();
   }
 }
