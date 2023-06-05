@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../controllers/BottomBar.dart';
 import '../controllers/move.dart';
 import 'edition1.dart';
+import 'edition2.dart';
 
 GlobalKey palmares = GlobalKey();
 GlobalKey jury = GlobalKey();
@@ -94,7 +95,7 @@ class _EditState extends State<Edit> {
     if (widget.editionNumber == 1) {
       return EditionUn(editionNumber: widget.editionNumber);
     } else if (widget.editionNumber == 2) {
-      return Text('Contenu de l\'édition 2');
+      return EditionDeux(editionNumber: widget.editionNumber);
     } else {
       return Text('Contenu par défaut');
     }

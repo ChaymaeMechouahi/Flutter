@@ -42,9 +42,9 @@ class _PCourtState extends State<PCourt> {
             aspectRatio: 1,
             viewportFraction: 0.7,
             initialPage: 0,
-            enableInfiniteScroll: false,
+            enableInfiniteScroll: widget.imageUrl.length > 1,
             reverse: false,
-            autoPlay: false,
+            autoPlay: widget.imageUrl.length > 1,
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
               setState(() {

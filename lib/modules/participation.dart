@@ -5,6 +5,11 @@ class Partcipation {
   late String prix;
   late String film;
   late String role;
+  Partcipation.empty() {
+    prix = '';
+    film = '';
+    role = '';
+  }
 
   Partcipation({
     required this.id,
@@ -13,7 +18,7 @@ class Partcipation {
     required this.prix,
     required this.film,
     required this.role,
-  });
+  }) {}
 
   Partcipation.fromJson(Map<String, dynamic> map) {
     id = map['id'];
