@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/views/edition10.dart';
 import 'package:flutter_hello/views/edition3.dart';
 import 'package:flutter_hello/views/edition5.dart';
 import 'package:flutter_hello/views/edition6.dart';
@@ -117,6 +118,8 @@ class _EditState extends State<Edit> {
       return EditionHuit(editionNumber: widget.editionNumber);
     } else if (widget.editionNumber == 9) {
       return EditionNeuf(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 10) {
+      return EditionDix(editionNumber: widget.editionNumber);
     } else {
       return Text('Contenu par défaut');
     }
