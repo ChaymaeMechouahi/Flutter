@@ -17,8 +17,8 @@ class _MyCarouselState extends State<MyCarousel> {
   CarouselController _carouselController = CarouselController();
   List<String> _carouselImages = [];
   List<String> _carouselDates = [];
-  List<int> nums = [1, 2, 3, 4, 5];
-  List<int> ids = [1, 8, 17, 27, 37];
+  List<int> nums = [1, 2, 3, 4, 5,6,7];
+  List<int> ids = [1, 8, 17, 27, 37,48,58];
 
   @override
   void initState() {

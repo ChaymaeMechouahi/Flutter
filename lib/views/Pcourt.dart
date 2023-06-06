@@ -26,14 +26,6 @@ class _PCourtState extends State<PCourt> {
     double imageWidth = screenWidth * 0.7;
     return Column(
       children: [
-        Text(
-          'PALMARES ET COURT METRAGE',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: 10),
         CarouselSlider.builder(
           itemCount: widget.imageUrl.length,
           carouselController: _carouselController,

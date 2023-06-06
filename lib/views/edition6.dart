@@ -6,21 +6,21 @@ import '../modules/participation.dart';
 import 'Palmares.dart';
 import 'jury.dart';
 
-class EditionDeux extends StatefulWidget {
+class EditionSix extends StatefulWidget {
   final int editionNumber;
 
-  EditionDeux({
+  EditionSix({
     required this.editionNumber,
   });
 
   @override
-  _EditionDeuxState createState() => _EditionDeuxState();
+  _EditionSixState createState() => _EditionSixState();
 }
 
-class _EditionDeuxState extends State<EditionDeux> {
-  List<int> ids = [9, 10, 11, 12];
-  List<int> idsNom = [15, 16, 18, 20];
-  int num = 2;
+class _EditionSixState extends State<EditionSix> {
+  List<int> ids = [49, 50, 51, 52]; //Palmares images
+  List<int> idsNom = [101, 102, 103, 104]; //Palmares Noms
+  int num = 6;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
   late Future<List<String>> _filmsFuture;
@@ -32,12 +32,10 @@ class _EditionDeuxState extends State<EditionDeux> {
   List<String> nomsList = [];
   List<String> paysList = [];
   List<Participant> juryParticipants = [];
+  late Future<List<String>> homageImage;
   List<Participant> homageParticipants = [];
+  List<Partcipation> homageParticipations = [];
 
-  List<Participant> PcourtParticipants = [];
-  List<Partcipation> participationsList = [];
-  late Future<List<String>> _fetchedImage;
-  late Future<String> homageImage;
   @override
   void initState() {
     super.initState();
@@ -47,12 +45,10 @@ class _EditionDeuxState extends State<EditionDeux> {
     _nomsFuture = _fetchEditionNoms();
     _paysFuture = _fetchEditionPays();
     _imageUrlFuture = _fetchImageUrl();
-    _fetchData();
     _fetchJuryParticipants();
     _fetchPCourtParticipants();
-    _fetchedImage = _fetchImageThree();
-    _fetchHommageParticipants();
-    homageImage = _fetchImageHomage();
+    _fetchData();
+    homageImage = _fetchImageThree();
   }
 
 //Palmares
@@ -126,7 +122,7 @@ class _EditionDeuxState extends State<EditionDeux> {
 //image jury
   Future<String> _fetchImage() async {
     try {
-      String imageUrl = await APIManager.fetchImage(num, 13);
+      String imageUrl = await APIManager.fetchImage(num, 53);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -138,7 +134,7 @@ class _EditionDeuxState extends State<EditionDeux> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]);
+          [105, 106, 107, 108, 109, 110, 111, 112, 113]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -150,11 +146,12 @@ class _EditionDeuxState extends State<EditionDeux> {
       print('Erreur lors de la récupération des participants du jury: $error');
     }
   }
-//Palmares cout metrage Image
 
+//hMMAGES
   Future<List<String>> _fetchImageThree() async {
     try {
-      List<String> imageUrl = await APIManager.fetchImageUrl([14, 15], num);
+      List<String> imageUrl =
+          await APIManager.fetchImageUrl([54, 55, 56, 57], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -162,21 +159,22 @@ class _EditionDeuxState extends State<EditionDeux> {
     }
   }
 
-  //Palmares court metrage
+  //hOMMAGE
   Future<List<Partcipation>> _fetchData() async {
     List<Partcipation> participations = [];
 
     try {
-      List<String> awards =
-          await APIManager.fetchParticipationAwards([31, 32], num);
-      List<String> films = await APIManager.fetchEditionFilms([31, 32], num);
+      List<String> awards = await APIManager.fetchParticipationAwards(
+          [114, 115, 116, 117], num); //Participation
+      List<String> films = await APIManager.fetchEditionFilms(
+          [114, 115, 116, 117], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
         participation.setFilm(films[i]);
         participations.add(participation);
         setState(() {
-          participationsList = participations;
+          homageParticipations = participations;
         });
       }
     } catch (error) {
@@ -187,48 +185,20 @@ class _EditionDeuxState extends State<EditionDeux> {
     return participations;
   }
 
-//Palmares court metrage
+//hOMMAGE
   Future<void> _fetchPCourtParticipants() async {
     try {
       List<Participant> participants =
-          await APIManager.fetchParticipants([58, 59, 60, 61, 62]);
+          await APIManager.fetchParticipants([114, 115, 116, 117]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
-          PcourtParticipants = participants;
+          homageParticipants = participants;
         });
       } else {
         print('Aucun participant trouvé');
       }
     } catch (error) {
       print('Erreur lors de la récupération des participants : $error');
-    }
-  }
-
-//image Hommages
-  Future<String> _fetchImageHomage() async {
-    try {
-      String imageUrl = await APIManager.fetchImage(num, 16);
-      return imageUrl;
-    } catch (error) {
-      print('Erreur lors de la récupération de l\'URL de l\'image: $error');
-      return '';
-    }
-  }
-
-//participants Hommages
-  Future<void> _fetchHommageParticipants() async {
-    try {
-      List<Participant> participants = await APIManager.fetchParticipants(
-          [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]);
-      if (participants != null && participants.isNotEmpty) {
-        setState(() {
-          homageParticipants = participants;
-        });
-      } else {
-        print('Aucun participant du jury trouvé');
-      }
-    } catch (error) {
-      print('Erreur lors de la récupération des participants du jury: $error');
     }
   }
 
@@ -286,10 +256,18 @@ class _EditionDeuxState extends State<EditionDeux> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'JURY',
+                    'Jury',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -299,7 +277,6 @@ class _EditionDeuxState extends State<EditionDeux> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
             FutureBuilder<String>(
               future: _fetchImage(),
               builder: (context, snapshot) {
@@ -322,49 +299,15 @@ class _EditionDeuxState extends State<EditionDeux> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Palmarès Court metrage',
+                    'Hommage',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 24,
                       color: Colors.brown,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    'Plus',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
-            FutureBuilder<List<String>>(
-              future: _fetchedImage,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return PCourt(
-                    imageUrl: snapshot.data!,
-                    participation: participationsList,
-                    participants: PcourtParticipants,
-                  );
-                } else if (snapshot.hasError) {
-                  return Text(
-                      'Erreur lors de la récupération de l\'URL de l\'image');
-                }
-                return CircularProgressIndicator();
-              },
-            ),
-            SizedBox(height: 30),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Hommages',
+                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -375,12 +318,14 @@ class _EditionDeuxState extends State<EditionDeux> {
               ),
             ),
             SizedBox(height: 30),
-            FutureBuilder<String>(
-              future: _fetchImageHomage(),
+            SizedBox(height: 30),
+            FutureBuilder<List<String>>(
+              future: homageImage,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Jury(
+                  return PCourt(
                     imageUrl: snapshot.data!,
+                    participation: homageParticipations,
                     participants: homageParticipants,
                   );
                 } else if (snapshot.hasError) {

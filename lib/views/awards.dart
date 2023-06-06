@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/views/edition3.dart';
+import 'package:flutter_hello/views/edition5.dart';
+import 'package:flutter_hello/views/edition6.dart';
+import 'package:flutter_hello/views/edition7.dart';
 import '../controllers/BottomBar.dart';
 import '../controllers/move.dart';
 import 'edition1.dart';
 import 'edition2.dart';
+import 'edition4.dart';
 
 GlobalKey palmares = GlobalKey();
 GlobalKey jury = GlobalKey();
@@ -96,6 +101,16 @@ class _EditState extends State<Edit> {
       return EditionUn(editionNumber: widget.editionNumber);
     } else if (widget.editionNumber == 2) {
       return EditionDeux(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 3) {
+      return EditionTrois(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 4) {
+      return EditionQuatre(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 5) {
+      return EditionCinq(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 6) {
+      return EditionSix(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 7) {
+      return EditionSept(editionNumber: widget.editionNumber);
     } else {
       return Text('Contenu par défaut');
     }
