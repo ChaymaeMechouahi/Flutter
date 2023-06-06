@@ -3,6 +3,8 @@ import 'package:flutter_hello/views/edition3.dart';
 import 'package:flutter_hello/views/edition5.dart';
 import 'package:flutter_hello/views/edition6.dart';
 import 'package:flutter_hello/views/edition7.dart';
+import 'package:flutter_hello/views/edition8.dart';
+import 'package:flutter_hello/views/edition9.dart';
 import '../controllers/BottomBar.dart';
 import '../controllers/move.dart';
 import 'edition1.dart';
@@ -111,6 +113,10 @@ class _EditState extends State<Edit> {
       return EditionSix(editionNumber: widget.editionNumber);
     } else if (widget.editionNumber == 7) {
       return EditionSept(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 8) {
+      return EditionHuit(editionNumber: widget.editionNumber);
+    } else if (widget.editionNumber == 9) {
+      return EditionNeuf(editionNumber: widget.editionNumber);
     } else {
       return Text('Contenu par défaut');
     }

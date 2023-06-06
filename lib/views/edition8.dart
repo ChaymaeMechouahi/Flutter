@@ -6,21 +6,21 @@ import '../modules/participation.dart';
 import 'Palmares.dart';
 import 'jury.dart';
 
-class EditionSept extends StatefulWidget {
+class EditionHuit extends StatefulWidget {
   final int editionNumber;
 
-  EditionSept({
+  EditionHuit({
     required this.editionNumber,
   });
 
   @override
-  _EditionSeptState createState() => _EditionSeptState();
+  _EditionHuitState createState() => _EditionHuitState();
 }
 
-class _EditionSeptState extends State<EditionSept> {
-  List<int> ids = [59, 60, 61, 62]; //Palmares images
-  List<int> idsNom = [118, 119, 120, 121]; //Palmares Noms
-  int num = 7;
+class _EditionHuitState extends State<EditionHuit> {
+  List<int> ids = [70, 71, 72, 73]; //Palmares images
+  List<int> idsNom = [136, 137, 138, 139]; //Palmares Noms
+  int num = 8;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
   late Future<List<String>> _filmsFuture;
@@ -122,7 +122,7 @@ class _EditionSeptState extends State<EditionSept> {
 //image jury
   Future<String> _fetchImage() async {
     try {
-      String imageUrl = await APIManager.fetchImage(num, 63);
+      String imageUrl = await APIManager.fetchImage(num, 74);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -134,7 +134,7 @@ class _EditionSeptState extends State<EditionSept> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [122, 123, 124, 125, 126, 127, 128, 129, 130]);
+          [140, 141, 142, 143, 144, 145, 146, 147, 148]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -151,7 +151,7 @@ class _EditionSeptState extends State<EditionSept> {
   Future<List<String>> _fetchImageThree() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([64, 65, 66, 67, 68], num);
+          await APIManager.fetchImageUrl([75, 76, 77, 78], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -165,9 +165,9 @@ class _EditionSeptState extends State<EditionSept> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [131, 132, 133, 134, 135], num); //Participation
+          [149, 150, 151, 152], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [131, 132, 133, 134, 135], num); //Participaton
+          [149, 150, 151, 152], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -189,7 +189,7 @@ class _EditionSeptState extends State<EditionSept> {
   Future<void> _fetchPCourtParticipants() async {
     try {
       List<Participant> participants =
-          await APIManager.fetchParticipants([131, 132, 133, 134, 135]); //paticipant
+          await APIManager.fetchParticipants([149, 150, 151, 152]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
