@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/edition10.dart';
 import 'package:flutter_hello/views/edition11.dart';
 import 'package:flutter_hello/views/edition12.dart';
+import 'package:flutter_hello/views/edition13.dart';
 import 'package:flutter_hello/views/edition3.dart';
 import 'package:flutter_hello/views/edition5.dart';
 import 'package:flutter_hello/views/edition6.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_hello/views/edition9.dart';
 import '../controllers/BottomBar.dart';
 import '../controllers/move.dart';
 import 'edition1.dart';
+import 'edition14.dart';
+import 'edition15.dart';
 import 'edition2.dart';
 import 'edition4.dart';
 
@@ -128,6 +131,15 @@ class _EditState extends State<Edit> {
     }
      else if (widget.editionNumber == 12) {
       return EditionDouze(editionNumber: widget.editionNumber);
+    }
+     else if (widget.editionNumber == 13) {
+      return EditionTreize(editionNumber: widget.editionNumber);
+    }
+    else if (widget.editionNumber == 14) {
+      return EditionQuatorze(editionNumber: widget.editionNumber);
+    }
+    else if (widget.editionNumber == 15) {
+      return EditionQuinze(editionNumber: widget.editionNumber);
     }else {
       return Text('Contenu par défaut');
     }
