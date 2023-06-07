@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/edition10.dart';
+import 'package:flutter_hello/views/edition11.dart';
+import 'package:flutter_hello/views/edition12.dart';
 import 'package:flutter_hello/views/edition3.dart';
 import 'package:flutter_hello/views/edition5.dart';
 import 'package:flutter_hello/views/edition6.dart';
@@ -120,7 +122,13 @@ class _EditState extends State<Edit> {
       return EditionNeuf(editionNumber: widget.editionNumber);
     } else if (widget.editionNumber == 10) {
       return EditionDix(editionNumber: widget.editionNumber);
-    } else {
+    } 
+    else if (widget.editionNumber == 11) {
+      return EditionOnze(editionNumber: widget.editionNumber);
+    }
+     else if (widget.editionNumber == 12) {
+      return EditionDouze(editionNumber: widget.editionNumber);
+    }else {
       return Text('Contenu par défaut');
     }
   }

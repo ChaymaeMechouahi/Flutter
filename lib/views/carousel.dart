@@ -17,8 +17,8 @@ class _MyCarouselState extends State<MyCarousel> {
   CarouselController _carouselController = CarouselController();
   List<String> _carouselImages = [];
   List<String> _carouselDates = [];
-  List<int> nums = [1, 2, 3, 4, 5,6,7,8,9,10];
-  List<int> ids = [1, 8, 17, 27, 37,48,58,69,79,89];
+  List<int> nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12];
+  List<int> ids = [1, 8, 17, 27, 37, 48, 58, 69, 79, 89, 104,124];
 
   @override
   void initState() {
@@ -171,8 +171,6 @@ class _MyCarouselState extends State<MyCarousel> {
   List<Widget> _buildDots() {
     return _carouselImages.map((image) {
       int index = _carouselImages.indexOf(image);
-      int num = nums[index];
-
       return Container(
         width: 8,
         height: 8,
@@ -180,13 +178,6 @@ class _MyCarouselState extends State<MyCarousel> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: _selectedIndex == index ? Colors.black : Colors.grey,
-        ),
-        child: Text(
-          '$num',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 10,
-          ),
         ),
       );
     }).toList();
