@@ -89,6 +89,7 @@ class _PalmaresState extends State<Palmares> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -107,6 +108,7 @@ class _PalmaresState extends State<Palmares> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 10),
@@ -117,6 +119,7 @@ class _PalmaresState extends State<Palmares> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 10),
@@ -127,6 +130,7 @@ class _PalmaresState extends State<Palmares> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],

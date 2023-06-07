@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controllers/BottomBar.dart';
+import 'BottomBar.dart';
 import '../controllers/connexion.dart';
 import '../controllers/move.dart';
 import 'galerie.dart';
@@ -79,7 +79,7 @@ class _MyArtPageState extends State<MyArtPage> {
       List<String> fetchedImageUrls =
           await APIManager.fetchImageUrlList(widget.editionNumber);
       print(widget.editionNumber);
-            print(fetchedImageUrls);
+      print(fetchedImageUrls);
 
       setState(() {
         imageUrls = fetchedImageUrls;
@@ -134,7 +134,7 @@ class _MyArtPageState extends State<MyArtPage> {
                           Text(
                             '${widget.editionNumber}° EDITION',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 30,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -142,11 +142,11 @@ class _MyArtPageState extends State<MyArtPage> {
                           SizedBox(height: 8),
                           Text(
                             'Du :${widget.date}',
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                            style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                           Text(
                             'Au :$DateF',
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                            style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                           SizedBox(height: 8),
                           Row(
@@ -195,6 +195,7 @@ class _MyArtPageState extends State<MyArtPage> {
                     ),
                   ],
                 ),
+                SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.all(16),
                   child: Column(
@@ -206,16 +207,23 @@ class _MyArtPageState extends State<MyArtPage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 5, 5, 5),
+                          color: Colors.brown,
                         ),
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 30),
                       Container(
-                        height: MediaQuery.of(context).size.height *
-                            0.3, // Ajustez la hauteur selon vos besoins
+                        height: MediaQuery.of(context).size.height * 0.5,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(168, 151, 106, 90)
+                                  .withOpacity(0.5),
+                              spreadRadius: 10,
+                              blurRadius: 2,
+                              offset: Offset(0, 10),
+                            ),
+                          ],
                         ),
                         padding: EdgeInsets.all(16),
                         child: SingleChildScrollView(
@@ -223,12 +231,12 @@ class _MyArtPageState extends State<MyArtPage> {
                             texte,
                             style: TextStyle(
                               fontSize: 16,
-                              color: const Color.fromARGB(255, 0, 0, 0),
+                              color: Color.fromARGB(255, 72, 69, 69),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 50),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Row(

@@ -84,6 +84,7 @@ class _PCourtState extends State<PCourt> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -103,6 +104,7 @@ class _PCourtState extends State<PCourt> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 10),
@@ -118,6 +120,7 @@ class _PCourtState extends State<PCourt> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 10),
@@ -131,6 +134,7 @@ class _PCourtState extends State<PCourt> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],

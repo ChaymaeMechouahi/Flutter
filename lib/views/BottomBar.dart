@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'move.dart';
+import '../controllers/move.dart';
 
 class MyBottomAppBar extends StatelessWidget {
   final Function(BuildContext) onHomePressed;
@@ -11,21 +11,21 @@ class MyBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.brown[200],
+      color: Color.fromARGB(255, 173, 173, 173),
       child: Container(
-        height: 80,
+        height: 60,
         child: Stack(
           children: [
             Column(
               children: [
                 Expanded(
                   child: Container(
-                    color: Colors.white,
+                    color: Colors.brown[200],
                   ),
                 ),
                 Expanded(
                   child: Container(
-                    color: Colors.brown[200],
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                 ),
               ],

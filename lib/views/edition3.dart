@@ -34,12 +34,12 @@ class _EditionTroisState extends State<EditionTrois> {
   List<Participant> juryParticipants = [];
   List<Participant> PcourtParticipants = [];
   List<Partcipation> participationsList = [];
-    List<Participant> jCourtParticipants = [];
+  List<Participant> jCourtParticipants = [];
   late Future<String> homageImage;
   List<Participant> homageParticipants = [];
 
   late Future<List<String>> _fetchedImage;
-    late Future<String> juryCourtImage;
+  late Future<String> juryCourtImage;
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _EditionTroisState extends State<EditionTrois> {
     _fetchedImage = _fetchImageThree();
     _fetchJCourtParticipants();
     juryCourtImage = _fetchImageJCourt();
-     _fetchHommageParticipants();
+    _fetchHommageParticipants();
     homageImage = _fetchImageHomage();
   }
 
@@ -225,7 +225,7 @@ class _EditionTroisState extends State<EditionTrois> {
   Future<void> _fetchJCourtParticipants() async {
     try {
       List<Participant> participants =
-          await APIManager.fetchParticipants([52,53,54,55,56,57]);
+          await APIManager.fetchParticipants([52, 53, 54, 55, 56, 57]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           jCourtParticipants = participants;
@@ -237,6 +237,7 @@ class _EditionTroisState extends State<EditionTrois> {
       print('Erreur lors de la récupération des participants du jury: $error');
     }
   }
+
 //image Hommages
   Future<String> _fetchImageHomage() async {
     try {
@@ -251,8 +252,8 @@ class _EditionTroisState extends State<EditionTrois> {
 //participants Hommages
   Future<void> _fetchHommageParticipants() async {
     try {
-      List<Participant> participants = await APIManager.fetchParticipants(
-          [58,59,60,61,62]);
+      List<Participant> participants =
+          await APIManager.fetchParticipants([58, 59, 60, 61, 62]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -264,6 +265,7 @@ class _EditionTroisState extends State<EditionTrois> {
       print('Erreur lors de la récupération des participants du jury: $error');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -318,18 +320,10 @@ class _EditionTroisState extends State<EditionTrois> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'JURY',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -359,18 +353,10 @@ class _EditionTroisState extends State<EditionTrois> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Palmarès Court Metrage',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Plus',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.brown,
@@ -401,7 +387,7 @@ class _EditionTroisState extends State<EditionTrois> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury Court Metrage',
@@ -411,18 +397,10 @@ class _EditionTroisState extends State<EditionTrois> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'Plus',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                 ],
               ),
             ),
-             SizedBox(height: 30),
+            SizedBox(height: 30),
             FutureBuilder<String>(
               future: _fetchImageJCourt(),
               builder: (context, snapshot) {
@@ -438,11 +416,11 @@ class _EditionTroisState extends State<EditionTrois> {
                 return CircularProgressIndicator();
               },
             ),
-                SizedBox(height: 30),
+            SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Hommage',
@@ -452,18 +430,10 @@ class _EditionTroisState extends State<EditionTrois> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'Voir Plus',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                 ],
               ),
             ),
-          SizedBox(height: 30),
+            SizedBox(height: 30),
             FutureBuilder<String>(
               future: _fetchImageHomage(),
               builder: (context, snapshot) {

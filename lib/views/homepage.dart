@@ -8,19 +8,19 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         color: Colors.brown[200],
         child: Container(
-          height: 80,
+          height: 60,
           child: Stack(
             children: [
               Column(
                 children: [
                   Expanded(
                     child: Container(
-                      color: Colors.white,
+                      color: Color.fromARGB(144, 182, 170, 158),
                     ),
                   ),
                   Expanded(
                     child: Container(
-                      color: Colors.brown[200],
+                      color: Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                 ],
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                         height: 60,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.brown[200],
+                          color: Color.fromARGB(255, 112, 94, 88),
                         ),
                         child: IconButton(
                           icon: Icon(
@@ -84,14 +84,16 @@ class HomePage extends StatelessWidget {
                           '20 EME EDITION',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.black,
+                            color: Colors.brown,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           '24 NOVEMBRE AU 02 DECEMBRE 2023',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 177, 114, 69),
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
@@ -107,7 +109,8 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.75,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 37,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -128,6 +131,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextField(
+                          enabled: false,
                           decoration: InputDecoration(
                             hintText: 'Recherchez une édition',
                             border: InputBorder.none,
@@ -143,6 +147,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 30),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -197,9 +202,12 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 30),
           Expanded(
             child: Container(
-              child: MyCarousel(onTap: () {  },), // Utilisation du widget MyCarousel
+              child: MyCarousel(
+                onTap: () {},
+              ),
             ),
           ),
         ],

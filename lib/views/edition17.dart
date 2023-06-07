@@ -18,8 +18,8 @@ class EditionDixSept extends StatefulWidget {
 }
 
 class _EditionDixSeptState extends State<EditionDixSept> {
-  List<int> ids = [202,203,204,205,206]; //Palmares images
-  List<int> idsNom = [331,332,333,334,335]; //Palmares Noms
+  List<int> ids = [202, 203, 204, 205, 206]; //Palmares images
+  List<int> idsNom = [331, 332, 333, 334, 335]; //Palmares Noms
   int num = 17;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
@@ -139,7 +139,7 @@ class _EditionDixSeptState extends State<EditionDixSept> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [336,337,338,339,340,341,342,343]);
+          [336, 337, 338, 339, 340, 341, 342, 343]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -156,7 +156,7 @@ class _EditionDixSeptState extends State<EditionDixSept> {
   Future<List<String>> _fetchImageThree() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([208,209,210], num);
+          await APIManager.fetchImageUrl([208, 209, 210], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -170,9 +170,9 @@ class _EditionDixSeptState extends State<EditionDixSept> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [344,345,346], num); //Participation
+          [344, 345, 346], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [344,345,346], num); //Participaton
+          [344, 345, 346], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -193,8 +193,8 @@ class _EditionDixSeptState extends State<EditionDixSept> {
 //hOMMAGE
   Future<void> _fetchPCourtParticipants() async {
     try {
-      List<Participant> participants = await APIManager.fetchParticipants(
-          [344,345,346]); //paticipant
+      List<Participant> participants =
+          await APIManager.fetchParticipants([344, 345, 346]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -209,11 +209,10 @@ class _EditionDixSeptState extends State<EditionDixSept> {
 
 //Conversation avec
 
-
   Future<List<String>> _fetchImageMaster() async {
     try {
-      List<String> imageUrl =
-          await APIManager.fetchImageUrl([211,212,213,214,215,216,217], num);
+      List<String> imageUrl = await APIManager.fetchImageUrl(
+          [211, 212, 213, 214, 215, 216, 217], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -228,9 +227,9 @@ class _EditionDixSeptState extends State<EditionDixSept> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [347,348,349,350,351,352,353], num); //Participation
+          [347, 348, 349, 350, 351, 352, 353], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [347,348,349,350,351,352,353], num); //Participaton
+          [347, 348, 349, 350, 351, 352, 353], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -250,11 +249,10 @@ class _EditionDixSeptState extends State<EditionDixSept> {
 
 //Conversation avec
 
-
   Future<void> _fetchMaster() async {
     try {
-      List<Participant> participants =
-          await APIManager.fetchParticipants([347,348,349,350,351,352,353]); //paticipant
+      List<Participant> participants = await APIManager.fetchParticipants(
+          [347, 348, 349, 350, 351, 352, 353]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           masterParticipants = participants;

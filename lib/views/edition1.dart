@@ -169,7 +169,6 @@ class _EditionUnState extends State<EditionUn> {
     }
   }
 
-  
   Future<List<String>> _fetchImageThree() async {
     try {
       List<String> imageUrl = await APIManager.fetchImageUrl([7], 1);
@@ -245,6 +244,24 @@ class _EditionUnState extends State<EditionUn> {
                 return Center(child: CircularProgressIndicator());
               },
             ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Jury',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
             FutureBuilder<String>(
               future: _fetchImage(),
               builder: (context, snapshot) {

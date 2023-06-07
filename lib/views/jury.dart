@@ -28,7 +28,7 @@ class Jury extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Container(
-            height: 150, // Hauteur fixe pour la liste des participants
+            height: 300, // Hauteur fixe pour la liste des participants
             child: ListView.separated(
               itemCount: participants.length,
               separatorBuilder: (context, index) =>

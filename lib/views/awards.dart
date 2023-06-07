@@ -11,7 +11,7 @@ import 'package:flutter_hello/views/edition6.dart';
 import 'package:flutter_hello/views/edition7.dart';
 import 'package:flutter_hello/views/edition8.dart';
 import 'package:flutter_hello/views/edition9.dart';
-import '../controllers/BottomBar.dart';
+import 'BottomBar.dart';
 import '../controllers/move.dart';
 import 'edition1.dart';
 import 'edition14.dart';
@@ -78,7 +78,7 @@ class _EditState extends State<Edit> {
                       Text(
                         '${widget.editionNumber}° EDITION',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -86,11 +86,11 @@ class _EditState extends State<Edit> {
                       SizedBox(height: 8),
                       Text(
                         'Du : ${widget.date}',
-                        style: TextStyle(fontSize: 14, color: Colors.white),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       Text(
                         'Au : ${widget.dateF}',
-                        style: TextStyle(fontSize: 14, color: Colors.white),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ],
                   ),
@@ -128,31 +128,23 @@ class _EditState extends State<Edit> {
       return EditionNeuf(editionNumber: widget.editionNumber);
     } else if (widget.editionNumber == 10) {
       return EditionDix(editionNumber: widget.editionNumber);
-    } 
-    else if (widget.editionNumber == 11) {
+    } else if (widget.editionNumber == 11) {
       return EditionOnze(editionNumber: widget.editionNumber);
-    }
-     else if (widget.editionNumber == 12) {
+    } else if (widget.editionNumber == 12) {
       return EditionDouze(editionNumber: widget.editionNumber);
-    }
-     else if (widget.editionNumber == 13) {
+    } else if (widget.editionNumber == 13) {
       return EditionTreize(editionNumber: widget.editionNumber);
-    }
-    else if (widget.editionNumber == 14) {
+    } else if (widget.editionNumber == 14) {
       return EditionQuatorze(editionNumber: widget.editionNumber);
-    }
-    else if (widget.editionNumber == 15) {
+    } else if (widget.editionNumber == 15) {
       return EditionQuinze(editionNumber: widget.editionNumber);
-    }
-     else if (widget.editionNumber == 16) {
+    } else if (widget.editionNumber == 16) {
       return EditionSeize(editionNumber: widget.editionNumber);
-    }
-    else if (widget.editionNumber == 17) {
+    } else if (widget.editionNumber == 17) {
       return EditionDixSept(editionNumber: widget.editionNumber);
-    }
-     else if (widget.editionNumber == 18) {
+    } else if (widget.editionNumber == 18) {
       return EditionDixHuit(editionNumber: widget.editionNumber);
-    }else {
+    } else {
       return Text('Contenu par défaut');
     }
   }

@@ -17,7 +17,7 @@ class _MyGalerie extends State<MyGalerie> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double imageWidth = screenWidth * 0.7;
+    double imageHeight = screenWidth * 0.7;
 
     return Column(
       children: [
@@ -25,7 +25,8 @@ class _MyGalerie extends State<MyGalerie> {
           itemCount: widget.imageUrls.length,
           carouselController: _carouselController,
           options: CarouselOptions(
-            height: imageWidth,
+          
+            height: imageHeight,
             aspectRatio: 1,
             viewportFraction: 0.7,
             initialPage: 0,
