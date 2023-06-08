@@ -38,6 +38,7 @@ dependencies:
   http: ^1.0.0
   dio : ^5.1.2
   web_socket_channel: ^2.4.0
+  google_fonts: ^5.0.0
 
 dev_dependencies:
   flutter_test:

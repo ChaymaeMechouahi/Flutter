@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/Pcourt.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/connexion.dart';
 import '../modules/participant.dart';
 import '../modules/participation.dart';
@@ -208,18 +209,17 @@ class _EditionUnState extends State<EditionUn> {
                 children: [
                   Text(
                     'Palmarès',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -252,10 +252,10 @@ class _EditionUnState extends State<EditionUn> {
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                 ],

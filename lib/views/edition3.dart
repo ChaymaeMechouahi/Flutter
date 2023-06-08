@@ -289,9 +289,8 @@ class _EditionTroisState extends State<EditionTrois> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

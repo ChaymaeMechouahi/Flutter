@@ -18,8 +18,8 @@ class EditionQuatorze extends StatefulWidget {
 }
 
 class _EditionQuatorzeState extends State<EditionQuatorze> {
-  List<int> ids = [157,168,159,160]; //Palmares images
-  List<int> idsNom = [266,267,268,269]; //Palmares Noms
+  List<int> ids = [157, 168, 159, 160]; //Palmares images
+  List<int> idsNom = [266, 267, 268, 269]; //Palmares Noms
   int num = 14;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
@@ -139,7 +139,7 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [270,271,272,273,274,275,276,277]);
+          [270, 271, 272, 273, 274, 275, 276, 277]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -156,7 +156,7 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
   Future<List<String>> _fetchImageThree() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([162,163,164,165,166,167], num);
+          await APIManager.fetchImageUrl([162, 163, 164, 165, 166, 167], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -170,9 +170,9 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [278,279,280,281,282,283], num); //Participation
+          [278, 279, 280, 281, 282, 283], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [278,279,280,281,282,283], num); //Participaton
+          [278, 279, 280, 281, 282, 283], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -194,7 +194,7 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
   Future<void> _fetchPCourtParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [278,279,280,281,282,283]); //paticipant
+          [278, 279, 280, 281, 282, 283]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -212,7 +212,7 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
   Future<List<String>> _fetchImageMaster() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([168,169,170], num);
+          await APIManager.fetchImageUrl([168, 169, 170], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -227,9 +227,9 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [284,285,286], num); //Participation
+          [284, 285, 286], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [284,285,286], num); //Participaton
+          [284, 285, 286], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -252,7 +252,7 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
   Future<void> _fetchMaster() async {
     try {
       List<Participant> participants =
-          await APIManager.fetchParticipants([284,285,286]); //paticipant
+          await APIManager.fetchParticipants([284, 285, 286]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           masterParticipants = participants;
@@ -288,9 +288,8 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -319,18 +318,10 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -372,9 +363,8 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -414,9 +404,8 @@ class _EditionQuatorzeState extends State<EditionQuatorze> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

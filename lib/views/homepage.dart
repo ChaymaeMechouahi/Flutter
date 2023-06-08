@@ -1,60 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/carousel.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.brown[200],
-        child: Container(
-          height: 60,
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Color.fromARGB(144, 182, 170, 158),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 112, 94, 88),
-                        ),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.home,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            // Action à effectuer lors du clic sur le bouton Home
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
       body: Column(
         children: [
           Padding(
@@ -70,9 +21,7 @@ class HomePage extends StatelessWidget {
                         Container(
                           height: 100,
                           child: GestureDetector(
-                            onTap: () {
-                              // Action à effectuer lors du clic sur le logo
-                            },
+                            onTap: () {},
                             child: Image.asset(
                               'assets/images/logo.png',
                               fit: BoxFit.contain,
@@ -82,19 +31,17 @@ class HomePage extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           '20 EME EDITION',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.brown,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: GoogleFonts.merriweather(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 23, 23, 23)),
                         ),
                         Text(
                           '24 NOVEMBRE AU 02 DECEMBRE 2023',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color.fromARGB(255, 177, 114, 69),
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: GoogleFonts.merriweather(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 177, 114, 69)),
                         ),
                       ],
                     ),
@@ -147,7 +94,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -159,10 +106,10 @@ class HomePage extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: Text(
                         'ARCHIVE',
-                        style: TextStyle(
+                        style: GoogleFonts.workSans(
                           fontSize: 24,
-                          color: Colors.brown,
                           fontWeight: FontWeight.bold,
+                          color: Colors.brown,
                         ),
                       ),
                     ),
@@ -174,8 +121,8 @@ class HomePage extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: RichText(
                         text: TextSpan(
-                          style: TextStyle(
-                            fontSize: 14,
+                          style: GoogleFonts.workSans(
+                            fontSize: 16,
                             color: Colors.brown,
                           ),
                           children: [
@@ -202,7 +149,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 10),
           Expanded(
             child: Container(
               child: MyCarousel(

@@ -145,6 +145,7 @@ class _EditionQuatreState extends State<EditionQuatre> {
       print('Erreur lors de la récupération des participants du jury: $error');
     }
   }
+
 //hMMAGES
   Future<List<String>> _fetchImageThree() async {
     try {
@@ -223,9 +224,8 @@ class _EditionQuatreState extends State<EditionQuatre> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -250,6 +250,24 @@ class _EditionQuatreState extends State<EditionQuatre> {
                 return Center(child: CircularProgressIndicator());
               },
             ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Jury',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
             FutureBuilder<String>(
               future: _fetchImage(),
               builder: (context, snapshot) {
@@ -282,9 +300,8 @@ class _EditionQuatreState extends State<EditionQuatre> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

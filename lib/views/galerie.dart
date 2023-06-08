@@ -25,10 +25,9 @@ class _MyGalerie extends State<MyGalerie> {
           itemCount: widget.imageUrls.length,
           carouselController: _carouselController,
           options: CarouselOptions(
-          
             height: imageHeight,
             aspectRatio: 1,
-            viewportFraction: 0.7,
+            viewportFraction: 0.9,
             initialPage: 0,
             enableInfiniteScroll: true,
             reverse: false,
@@ -44,7 +43,7 @@ class _MyGalerie extends State<MyGalerie> {
             return Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   widget.imageUrls[index],
                   fit: BoxFit.cover,

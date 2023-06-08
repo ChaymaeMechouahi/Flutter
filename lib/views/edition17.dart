@@ -288,9 +288,8 @@ class _EditionDixSeptState extends State<EditionDixSept> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -319,7 +318,7 @@ class _EditionDixSeptState extends State<EditionDixSept> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury',
@@ -329,14 +328,7 @@ class _EditionDixSeptState extends State<EditionDixSept> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'Voir plus',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                 
                 ],
               ),
             ),
@@ -372,9 +364,8 @@ class _EditionDixSeptState extends State<EditionDixSept> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -414,9 +405,8 @@ class _EditionDixSeptState extends State<EditionDixSept> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

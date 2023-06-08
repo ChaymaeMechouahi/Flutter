@@ -18,8 +18,8 @@ class EditionTreize extends StatefulWidget {
 }
 
 class _EditionTreizeState extends State<EditionTreize> {
-  List<int> ids = [140,141,142,143,144]; //Palmares images
-  List<int> idsNom = [241,242,243,244,245]; //Palmares Noms
+  List<int> ids = [140, 141, 142, 143, 144]; //Palmares images
+  List<int> idsNom = [241, 242, 243, 244, 245]; //Palmares Noms
   int num = 13;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
@@ -148,7 +148,7 @@ class _EditionTreizeState extends State<EditionTreize> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [246,247,248,249,250,251,252,253,254,255]);
+          [246, 247, 248, 249, 250, 251, 252, 253, 254, 255]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -218,8 +218,8 @@ class _EditionTreizeState extends State<EditionTreize> {
 //hMMAGES
   Future<List<String>> _fetchImageThree() async {
     try {
-      List<String> imageUrl = await APIManager.fetchImageUrl(
-          [147,148,149,150,151,152], num);
+      List<String> imageUrl =
+          await APIManager.fetchImageUrl([147, 148, 149, 150, 151, 152], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -233,9 +233,9 @@ class _EditionTreizeState extends State<EditionTreize> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [257,258,259,260,261,262], num); //Participation
+          [257, 258, 259, 260, 261, 262], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [257,258,259,260,261,262], num); //Participaton
+          [257, 258, 259, 260, 261, 262], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -257,7 +257,7 @@ class _EditionTreizeState extends State<EditionTreize> {
   Future<void> _fetchPCourtParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [257,258,259,260,261,262]); //paticipant
+          [257, 258, 259, 260, 261, 262]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -275,7 +275,7 @@ class _EditionTreizeState extends State<EditionTreize> {
   Future<List<String>> _fetchImageMaster() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([153,154,155], num);
+          await APIManager.fetchImageUrl([153, 154, 155], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -290,9 +290,9 @@ class _EditionTreizeState extends State<EditionTreize> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [263,264,265], num); //Participation
+          [263, 264, 265], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [263,264,265], num); //Participaton
+          [263, 264, 265], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -315,7 +315,7 @@ class _EditionTreizeState extends State<EditionTreize> {
   Future<void> _fetchMaster() async {
     try {
       List<Participant> participants =
-          await APIManager.fetchParticipants([263,264,265]); //paticipant
+          await APIManager.fetchParticipants([263, 264, 265]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           masterParticipants = participants;
@@ -351,9 +351,8 @@ class _EditionTreizeState extends State<EditionTreize> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -382,18 +381,10 @@ class _EditionTreizeState extends State<EditionTreize> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -422,18 +413,10 @@ class _EditionTreizeState extends State<EditionTreize> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Palmares cinécoles',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -477,9 +460,8 @@ class _EditionTreizeState extends State<EditionTreize> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -502,7 +484,6 @@ class _EditionTreizeState extends State<EditionTreize> {
                 return CircularProgressIndicator();
               },
             ),
-            
             SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -520,9 +501,8 @@ class _EditionTreizeState extends State<EditionTreize> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

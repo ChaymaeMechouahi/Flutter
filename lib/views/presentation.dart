@@ -4,6 +4,7 @@ import '../controllers/connexion.dart';
 import '../controllers/move.dart';
 import 'galerie.dart';
 import 'awards.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 GlobalKey title = GlobalKey();
 GlobalKey gallery = GlobalKey();
@@ -104,7 +105,7 @@ class _MyArtPageState extends State<MyArtPage> {
         builder: (BuildContext context, BoxConstraints constraints) {
           final double screenWidth = constraints.maxWidth;
           final double imageHeight =
-              screenWidth / MediaQuery.of(context).size.aspectRatio * 0.7;
+              screenWidth / MediaQuery.of(context).size.aspectRatio * 0.9;
 
           return SingleChildScrollView(
             child: Column(
@@ -113,7 +114,7 @@ class _MyArtPageState extends State<MyArtPage> {
                   children: [
                     ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.5), BlendMode.darken),
+                          Colors.black.withOpacity(0.7), BlendMode.darken),
                       child: Container(
                         width: screenWidth,
                         height: imageHeight,
@@ -132,21 +133,25 @@ class _MyArtPageState extends State<MyArtPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${widget.editionNumber}° EDITION',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                            '${widget.editionNumber} éme Edition',
+                            style: GoogleFonts.bitter(
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    const Color.fromARGB(255, 194, 192, 192)),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'Du :${widget.date}',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            '${widget.date}',
+                            style: GoogleFonts.bitter(
+                                fontSize: 24,
+                                color: Color.fromARGB(220, 225, 195, 155)),
                           ),
                           Text(
-                            'Au :$DateF',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            '$DateF',
+                            style: GoogleFonts.bitter(
+                                fontSize: 24,
+                                color: Color.fromARGB(220, 237, 207, 167)),
                           ),
                           SizedBox(height: 8),
                           Row(
@@ -161,11 +166,10 @@ class _MyArtPageState extends State<MyArtPage> {
                                       null, // Supprimez null et ajoutez votre action ici
                                   child: Text(
                                     'Lire l\'article',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      decoration: TextDecoration.underline,
-                                      color: Colors.white,
-                                    ),
+                                    style: GoogleFonts.changa(
+                                        fontSize: 14,
+                                        color: const Color.fromARGB(
+                                            255, 194, 192, 192)),
                                   ),
                                 ),
                               ),
@@ -180,11 +184,10 @@ class _MyArtPageState extends State<MyArtPage> {
                                       null, // Supprimez null et ajoutez votre action ici
                                   child: Text(
                                     'Galerie',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      decoration: TextDecoration.underline,
-                                      color: Colors.white,
-                                    ),
+                                    style: GoogleFonts.changa(
+                                        fontSize: 14,
+                                        color:
+                                            Color.fromARGB(255, 194, 193, 192)),
                                   ),
                                 ),
                               ),
@@ -204,20 +207,21 @@ class _MyArtPageState extends State<MyArtPage> {
                       Text(
                         titre,
                         key: title,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.brown,
-                        ),
+                        style: GoogleFonts.varelaRound(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 21, 21, 21)),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(
+                        height: 15,
+                      ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.5,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           boxShadow: [
                             BoxShadow(
-                              color: Color.fromARGB(168, 151, 106, 90)
+                              color: Color.fromARGB(217, 228, 228, 228)
                                   .withOpacity(0.5),
                               spreadRadius: 10,
                               blurRadius: 2,
@@ -229,10 +233,9 @@ class _MyArtPageState extends State<MyArtPage> {
                         child: SingleChildScrollView(
                           child: Text(
                             texte,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color.fromARGB(255, 72, 69, 69),
-                            ),
+                            style: GoogleFonts.almarai(
+                                fontSize: 16,
+                                color: Color.fromARGB(255, 52, 43, 43)),
                           ),
                         ),
                       ),
@@ -249,10 +252,10 @@ class _MyArtPageState extends State<MyArtPage> {
                                   child: Text(
                                     'GALERIE',
                                     key: gallery,
-                                    style: TextStyle(
+                                    style: GoogleFonts.workSans(
                                       fontSize: 24,
-                                      color: Colors.brown,
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.brown,
                                     ),
                                   ),
                                 ),
@@ -264,8 +267,8 @@ class _MyArtPageState extends State<MyArtPage> {
                                   alignment: Alignment.centerRight,
                                   child: RichText(
                                     text: TextSpan(
-                                      style: TextStyle(
-                                        fontSize: 14,
+                                      style: GoogleFonts.workSans(
+                                        fontSize: 16,
                                         color: Colors.brown,
                                       ),
                                       children: [

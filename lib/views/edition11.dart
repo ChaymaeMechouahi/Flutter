@@ -275,7 +275,7 @@ class _EditionOnzeState extends State<EditionOnze> {
   Future<List<String>> _fetchImageMaster() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([119,120,121,122,123], num);
+          await APIManager.fetchImageUrl([119, 120, 121, 122, 123], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -290,9 +290,9 @@ class _EditionOnzeState extends State<EditionOnze> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [214,215,216,217,218], num); //Participation
+          [214, 215, 216, 217, 218], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [214,215,216,217,218], num); //Participaton
+          [214, 215, 216, 217, 218], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -314,8 +314,8 @@ class _EditionOnzeState extends State<EditionOnze> {
 
   Future<void> _fetchMaster() async {
     try {
-      List<Participant> participants =
-          await APIManager.fetchParticipants([214,215,216,217,218]); //paticipant
+      List<Participant> participants = await APIManager.fetchParticipants(
+          [214, 215, 216, 217, 218]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           masterParticipants = participants;
@@ -351,9 +351,8 @@ class _EditionOnzeState extends State<EditionOnze> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -382,18 +381,10 @@ class _EditionOnzeState extends State<EditionOnze> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -422,18 +413,10 @@ class _EditionOnzeState extends State<EditionOnze> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Palmares cinécoles',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -477,9 +460,8 @@ class _EditionOnzeState extends State<EditionOnze> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -502,7 +484,6 @@ class _EditionOnzeState extends State<EditionOnze> {
                 return CircularProgressIndicator();
               },
             ),
-            
             SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -520,9 +501,8 @@ class _EditionOnzeState extends State<EditionOnze> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

@@ -225,9 +225,8 @@ class _EditionSixState extends State<EditionSix> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -252,11 +251,11 @@ class _EditionSixState extends State<EditionSix> {
                 return Center(child: CircularProgressIndicator());
               },
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury',
@@ -266,17 +265,10 @@ class _EditionSixState extends State<EditionSix> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'Voir plus',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                 ],
               ),
             ),
+            SizedBox(height: 20),
             FutureBuilder<String>(
               future: _fetchImage(),
               builder: (context, snapshot) {
@@ -309,9 +301,8 @@ class _EditionSixState extends State<EditionSix> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

@@ -188,8 +188,8 @@ class _EditionSeptState extends State<EditionSept> {
 //hOMMAGE
   Future<void> _fetchPCourtParticipants() async {
     try {
-      List<Participant> participants =
-          await APIManager.fetchParticipants([131, 132, 133, 134, 135]); //paticipant
+      List<Participant> participants = await APIManager.fetchParticipants(
+          [131, 132, 133, 134, 135]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -225,9 +225,8 @@ class _EditionSeptState extends State<EditionSept> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -256,18 +255,10 @@ class _EditionSeptState extends State<EditionSept> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -309,9 +300,8 @@ class _EditionSeptState extends State<EditionSept> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

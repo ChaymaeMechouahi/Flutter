@@ -13,7 +13,7 @@ class MyBottomAppBar extends StatelessWidget {
     return BottomAppBar(
       color: Color.fromARGB(255, 173, 173, 173),
       child: Container(
-        height: 60,
+        height: 50,
         child: Stack(
           children: [
             Column(

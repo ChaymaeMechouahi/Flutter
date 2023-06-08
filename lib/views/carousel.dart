@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_hello/views/presentation.dart';
 import '../controllers/connexion.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyCarousel extends StatefulWidget {
   final VoidCallback onTap;
@@ -17,8 +18,46 @@ class _MyCarouselState extends State<MyCarousel> {
   CarouselController _carouselController = CarouselController();
   List<String> _carouselImages = [];
   List<String> _carouselDates = [];
-  List<int> nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16,17,18];
-  List<int> ids = [1, 8, 17, 27, 37, 48, 58, 69, 79, 89, 104,124,139,156,171,187,201,218];
+  List<int> nums = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ];
+  List<int> ids = [
+    1,
+    8,
+    17,
+    27,
+    37,
+    48,
+    58,
+    69,
+    79,
+    89,
+    104,
+    124,
+    139,
+    156,
+    171,
+    187,
+    201,
+    218
+  ];
 
   @override
   void initState() {
@@ -58,8 +97,6 @@ class _MyCarouselState extends State<MyCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Column(
       children: [
         (_carouselImages.isEmpty)
@@ -68,9 +105,9 @@ class _MyCarouselState extends State<MyCarousel> {
                 itemCount: _carouselImages.length,
                 carouselController: _carouselController,
                 options: CarouselOptions(
-                  height: 230,
+                  height: 330,
                   aspectRatio: 16 / 9,
-                  viewportFraction: 0.6,
+                  viewportFraction: 0.7,
                   initialPage: 0,
                   enableInfiniteScroll: true,
                   reverse: false,
@@ -83,7 +120,6 @@ class _MyCarouselState extends State<MyCarousel> {
                   },
                 ),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
-                  double imageWidth = screenWidth * 0.5;
                   int num = nums[index];
                   String date = _carouselDates[index];
 
@@ -100,9 +136,8 @@ class _MyCarouselState extends State<MyCarousel> {
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),
-                          width: imageWidth,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(15),
                             image: DecorationImage(
                               image: NetworkImage(_carouselImages[index]),
                               fit: BoxFit.cover,
@@ -115,35 +150,21 @@ class _MyCarouselState extends State<MyCarousel> {
                         bottom: 10,
                         left: 0,
                         right: 0,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.5),
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '$num °EDITION',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                        child: Column(
+                          children: [
+                            Text(
+                              '$num éme Edition',
+                              style: GoogleFonts.bitter(
+                                  fontSize: 24,
                                   fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                date,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ),
+                                  color: Colors.white),
+                            ),
+                            Text(
+                              date,
+                              style: GoogleFonts.bitter(
+                                  fontSize: 16, color: Colors.white),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -161,10 +182,26 @@ class _MyCarouselState extends State<MyCarousel> {
 
   ColorFilter _getOpacityFilter() {
     return ColorFilter.matrix([
-      1, 0, 0, 0, 0, // Red
-      0, 1, 0, 0, 0, // Green
-      0, 0, 1, 0, 0, // Blue
-      0, 0, 0, 1, 0, // Alpha (Opacity)
+      0.4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
     ]);
   }
 

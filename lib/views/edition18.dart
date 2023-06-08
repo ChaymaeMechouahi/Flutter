@@ -18,8 +18,8 @@ class EditionDixHuit extends StatefulWidget {
 }
 
 class _EditionDixHuitState extends State<EditionDixHuit> {
-  List<int> ids = [219,220,221,222,223]; //Palmares images
-  List<int> idsNom = [354,355,356,357,358]; //Palmares Noms
+  List<int> ids = [219, 220, 221, 222, 223]; //Palmares images
+  List<int> idsNom = [354, 355, 356, 357, 358]; //Palmares Noms
   int num = 18;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
@@ -139,7 +139,7 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [359,360,361,362,363,364,365,366,367]);
+          [359, 360, 361, 362, 363, 364, 365, 366, 367]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -156,7 +156,7 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
   Future<List<String>> _fetchImageThree() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([225,226,227,228], num);
+          await APIManager.fetchImageUrl([225, 226, 227, 228], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -170,9 +170,9 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [368,369,370,371], num); //Participation
+          [368, 369, 370, 371], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [368,369,370,371], num); //Participaton
+          [368, 369, 370, 371], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -193,8 +193,8 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
 //hOMMAGE
   Future<void> _fetchPCourtParticipants() async {
     try {
-      List<Participant> participants = await APIManager.fetchParticipants(
-          [368,369,370,371]); //paticipant
+      List<Participant> participants =
+          await APIManager.fetchParticipants([368, 369, 370, 371]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -209,11 +209,10 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
 
 //Conversation avec
 
-
   Future<List<String>> _fetchImageMaster() async {
     try {
-      List<String> imageUrl =
-          await APIManager.fetchImageUrl([229,230,231,232,233,234,235,236,237,238], num);
+      List<String> imageUrl = await APIManager.fetchImageUrl(
+          [229, 230, 231, 232, 233, 234, 235, 236, 237, 238], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -228,9 +227,11 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [372,373,374,375,376,377,378,379,380,381], num); //Participation
+          [372, 373, 374, 375, 376, 377, 378, 379, 380, 381],
+          num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [372,373,374,375,376,377,378,379,380,381], num); //Participaton
+          [372, 373, 374, 375, 376, 377, 378, 379, 380, 381],
+          num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -250,11 +251,10 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
 
 //Conversation avec
 
-
   Future<void> _fetchMaster() async {
     try {
-      List<Participant> participants =
-          await APIManager.fetchParticipants([372,373,374,375,376,377,378,379,380,381]); //paticipant
+      List<Participant> participants = await APIManager.fetchParticipants(
+          [372, 373, 374, 375, 376, 377, 378, 379, 380, 381]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           masterParticipants = participants;
@@ -290,9 +290,8 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -321,18 +320,10 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Voir plus',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.brown,
@@ -374,9 +365,8 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -416,9 +406,8 @@ class _EditionDixHuitState extends State<EditionDixHuit> {
                   Text(
                     'Voir plus',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.brown,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
