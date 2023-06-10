@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/modules/participation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../modules/participant.dart';
 
@@ -73,7 +74,7 @@ class _PCourtState extends State<PCourt> {
                     children: [
                       Icon(
                         Icons.emoji_events,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 255, 204, 185),
                       ),
                       SizedBox(width: 5),
                       Text(
@@ -81,10 +82,10 @@ class _PCourtState extends State<PCourt> {
                                 index < widget.participation.length)
                             ? widget.participation[index].prix
                             : '',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
+                        style: GoogleFonts.neuton(
+                          fontSize: 10,
                           fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 255, 179, 151),
                         ),
                       ),
                     ],
@@ -101,11 +102,10 @@ class _PCourtState extends State<PCourt> {
                                 index < widget.participation.length)
                             ? widget.participation[index].film
                             : '',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: GoogleFonts.readexPro(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 255, 241, 235)),
                       ),
                       SizedBox(height: 10),
                       Text(
@@ -117,11 +117,10 @@ class _PCourtState extends State<PCourt> {
                                 ' ' +
                                 widget.participants[index].prenom
                             : '',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: GoogleFonts.readexPro(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 255, 241, 235)),
                       ),
                       SizedBox(height: 10),
                       Text(
@@ -131,11 +130,10 @@ class _PCourtState extends State<PCourt> {
                                 index < widget.participants.length)
                             ? widget.participants[index].pays
                             : '',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: GoogleFonts.neucha(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 174, 116, 95)),
                       ),
                     ],
                   ),

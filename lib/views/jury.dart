@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../modules/participant.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Jury extends StatelessWidget {
   final String imageUrl;
@@ -36,8 +37,20 @@ class Jury extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                      '${participants[index].getNom} ${participants[index].getPrenom}'),
-                  subtitle: Text(participants[index].getPays),
+                    '${participants[index].getNom} ${participants[index].getPrenom}',
+                    style: GoogleFonts.libreCaslonText(
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 63, 59, 57),
+                    ),
+                  ),
+                  subtitle: Text(
+                    participants[index].getPays,
+                    style: GoogleFonts.neucha(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 125, 82, 67),
+                    ),
+                  ),
                 );
               },
             ),
