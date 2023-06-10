@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/Pcourt.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/connexion.dart';
 import '../modules/participant.dart';
 import '../modules/participation.dart';
@@ -246,15 +247,15 @@ class _EditionDeuxState extends State<EditionDeux> {
                 children: [
                   Text(
                     'Palmarès',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),
@@ -289,10 +290,10 @@ class _EditionDeuxState extends State<EditionDeux> {
                 children: [
                   Text(
                     'JURY',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                 ],
@@ -322,16 +323,16 @@ class _EditionDeuxState extends State<EditionDeux> {
                 children: [
                   Text(
                     'Palmarès Court metrage',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 20,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Plus',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
                       color: Colors.brown,
                       fontWeight: FontWeight.bold,
                     ),
@@ -364,10 +365,10 @@ class _EditionDeuxState extends State<EditionDeux> {
                 children: [
                   Text(
                     'Hommages',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                 ],

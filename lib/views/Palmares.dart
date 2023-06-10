@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Palmares extends StatefulWidget {
   final List<String> imageUrls; // Tableau des URLs des images
@@ -55,7 +56,7 @@ class _PalmaresState extends State<Palmares> {
               children: [
                 Container(
                   height: imageHeight,
-                  width: imageWidth,
+                  width: 300,
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
@@ -79,17 +80,17 @@ class _PalmaresState extends State<Palmares> {
                     children: [
                       Icon(
                         Icons.emoji_events,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 255, 204, 185),
                       ),
                       SizedBox(width: 5),
                       Text(
                         widget.awards.length > index
                             ? widget.awards[index]
                             : '',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
+                        style: GoogleFonts.neuton(
+                          fontSize: 10,
                           fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 255, 179, 151),
                         ),
                       ),
                     ],
@@ -102,36 +103,31 @@ class _PalmaresState extends State<Palmares> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.films.length > index
-                            ? widget.films[index]
-                            : '', // Vérification de la longueur et de l'index
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        widget.films.length > index ? widget.films[index] : '',
+                        style: GoogleFonts.castoroTitling(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 255, 241, 235)),
                       ),
                       SizedBox(height: 10),
                       Text(
                         widget.noms.length > index
                             ? widget.noms[index]
                             : '', // Vérification de la longueur et de l'index
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: GoogleFonts.readexPro(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 255, 241, 235)),
                       ),
                       SizedBox(height: 10),
                       Text(
                         widget.pays.length > index
                             ? widget.pays[index]
                             : '', // Vérification de la longueur et de l'index
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: GoogleFonts.neucha(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 174, 116, 95)),
                       ),
                     ],
                   ),

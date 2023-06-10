@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/Pcourt.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/connexion.dart';
 import '../modules/participant.dart';
 import '../modules/participation.dart';
@@ -18,8 +19,8 @@ class EditionQuinze extends StatefulWidget {
 }
 
 class _EditionQuinzeState extends State<EditionQuinze> {
-  List<int> ids = [172,173,174,175,176]; //Palmares images
-  List<int> idsNom = [287,288,289,290,291]; //Palmares Noms
+  List<int> ids = [172, 173, 174, 175, 176]; //Palmares images
+  List<int> idsNom = [287, 288, 289, 290, 291]; //Palmares Noms
   int num = 15;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
@@ -139,7 +140,7 @@ class _EditionQuinzeState extends State<EditionQuinze> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [292,293,294,295,296,297,298,299,300]);
+          [292, 293, 294, 295, 296, 297, 298, 299, 300]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -156,7 +157,7 @@ class _EditionQuinzeState extends State<EditionQuinze> {
   Future<List<String>> _fetchImageThree() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([178,179,180,181,182,183], num);
+          await APIManager.fetchImageUrl([178, 179, 180, 181, 182, 183], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -170,9 +171,9 @@ class _EditionQuinzeState extends State<EditionQuinze> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [301,302,303,304,305,306], num); //Participation
+          [301, 302, 303, 304, 305, 306], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [301,302,303,304,305,306], num); //Participaton
+          [301, 302, 303, 304, 305, 306], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -194,7 +195,7 @@ class _EditionQuinzeState extends State<EditionQuinze> {
   Future<void> _fetchPCourtParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [301,302,303,304,305,306]); //paticipant
+          [301, 302, 303, 304, 305, 306]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -212,7 +213,7 @@ class _EditionQuinzeState extends State<EditionQuinze> {
   Future<List<String>> _fetchImageMaster() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([184,185,186], num);
+          await APIManager.fetchImageUrl([184, 185, 186], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -227,9 +228,9 @@ class _EditionQuinzeState extends State<EditionQuinze> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [307,308,309], num); //Participation
+          [307, 308, 309], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [307,308,309], num); //Participaton
+          [307, 308, 309], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -252,7 +253,7 @@ class _EditionQuinzeState extends State<EditionQuinze> {
   Future<void> _fetchMaster() async {
     try {
       List<Participant> participants =
-          await APIManager.fetchParticipants([307,308,309]); //paticipant
+          await APIManager.fetchParticipants([307, 308, 309]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           masterParticipants = participants;
@@ -279,15 +280,15 @@ class _EditionQuinzeState extends State<EditionQuinze> {
                 children: [
                   Text(
                     'Palmarès',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),
@@ -322,13 +323,12 @@ class _EditionQuinzeState extends State<EditionQuinze> {
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
-                 
                 ],
               ),
             ),
@@ -355,15 +355,15 @@ class _EditionQuinzeState extends State<EditionQuinze> {
                 children: [
                   Text(
                     'Hommage',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),
@@ -396,15 +396,15 @@ class _EditionQuinzeState extends State<EditionQuinze> {
                 children: [
                   Text(
                     'MasterClass',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),

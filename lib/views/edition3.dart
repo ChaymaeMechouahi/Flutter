@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/Pcourt.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/connexion.dart';
 import '../modules/participant.dart';
 import '../modules/participation.dart';
@@ -280,15 +281,15 @@ class _EditionTroisState extends State<EditionTrois> {
                 children: [
                   Text(
                     'Palmarès',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),
@@ -323,10 +324,10 @@ class _EditionTroisState extends State<EditionTrois> {
                 children: [
                   Text(
                     'JURY',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                 ],
@@ -356,10 +357,10 @@ class _EditionTroisState extends State<EditionTrois> {
                 children: [
                   Text(
                     'Palmarès Court Metrage',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.brown,
+                    style: GoogleFonts.workSans(
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                 ],
@@ -390,10 +391,10 @@ class _EditionTroisState extends State<EditionTrois> {
                 children: [
                   Text(
                     'Jury Court Metrage',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.brown,
+                    style: GoogleFonts.workSans(
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                 ],
@@ -423,10 +424,10 @@ class _EditionTroisState extends State<EditionTrois> {
                 children: [
                   Text(
                     'Hommage',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                 ],

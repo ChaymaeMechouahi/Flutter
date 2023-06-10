@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/views/Pcourt.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/connexion.dart';
 import '../modules/participant.dart';
 import '../modules/participation.dart';
@@ -18,8 +19,8 @@ class EditionSeize extends StatefulWidget {
 }
 
 class _EditionSeizeState extends State<EditionSeize> {
-  List<int> ids = [188,189,190,191,192]; //Palmares images
-  List<int> idsNom = [310,311,312,313,314]; //Palmares Noms
+  List<int> ids = [188, 189, 190, 191, 192]; //Palmares images
+  List<int> idsNom = [310, 311, 312, 313, 314]; //Palmares Noms
   int num = 16;
   late Future<List<String>> _imageUrlFuture;
   late Future<List<String>> _imageUrlsFuture;
@@ -139,7 +140,7 @@ class _EditionSeizeState extends State<EditionSeize> {
   Future<void> _fetchJuryParticipants() async {
     try {
       List<Participant> participants = await APIManager.fetchParticipants(
-          [315,316,317,318,319,320,321,322,323]);
+          [315, 316, 317, 318, 319, 320, 321, 322, 323]);
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           juryParticipants = participants;
@@ -156,7 +157,7 @@ class _EditionSeizeState extends State<EditionSeize> {
   Future<List<String>> _fetchImageThree() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([194,195,196,197], num);
+          await APIManager.fetchImageUrl([194, 195, 196, 197], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -170,9 +171,9 @@ class _EditionSeizeState extends State<EditionSeize> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [324,325,326,327], num); //Participation
+          [324, 325, 326, 327], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [324,325,326,327], num); //Participaton
+          [324, 325, 326, 327], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -193,8 +194,8 @@ class _EditionSeizeState extends State<EditionSeize> {
 //hOMMAGE
   Future<void> _fetchPCourtParticipants() async {
     try {
-      List<Participant> participants = await APIManager.fetchParticipants(
-          [324,325,326,327]); //paticipant
+      List<Participant> participants =
+          await APIManager.fetchParticipants([324, 325, 326, 327]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           homageParticipants = participants;
@@ -212,7 +213,7 @@ class _EditionSeizeState extends State<EditionSeize> {
   Future<List<String>> _fetchImageMaster() async {
     try {
       List<String> imageUrl =
-          await APIManager.fetchImageUrl([198,199,200], num);
+          await APIManager.fetchImageUrl([198, 199, 200], num);
       return imageUrl;
     } catch (error) {
       print('Erreur lors de la récupération de l\'URL de l\'image: $error');
@@ -227,9 +228,9 @@ class _EditionSeizeState extends State<EditionSeize> {
 
     try {
       List<String> awards = await APIManager.fetchParticipationAwards(
-          [328,329,330], num); //Participation
+          [328, 329, 330], num); //Participation
       List<String> films = await APIManager.fetchEditionFilms(
-          [328,329,330], num); //Participaton
+          [328, 329, 330], num); //Participaton
       for (int i = 0; i < awards.length; i++) {
         Partcipation participation = Partcipation.empty();
         participation.setPrix(awards[i]);
@@ -252,7 +253,7 @@ class _EditionSeizeState extends State<EditionSeize> {
   Future<void> _fetchMaster() async {
     try {
       List<Participant> participants =
-          await APIManager.fetchParticipants([328,329,330]); //paticipant
+          await APIManager.fetchParticipants([328, 329, 330]); //paticipant
       if (participants != null && participants.isNotEmpty) {
         setState(() {
           masterParticipants = participants;
@@ -279,15 +280,15 @@ class _EditionSeizeState extends State<EditionSeize> {
                 children: [
                   Text(
                     'Palmarès',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),
@@ -322,13 +323,12 @@ class _EditionSeizeState extends State<EditionSeize> {
                 children: [
                   Text(
                     'Jury',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
-                  
                 ],
               ),
             ),
@@ -355,15 +355,15 @@ class _EditionSeizeState extends State<EditionSeize> {
                 children: [
                   Text(
                     'Hommage',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),
@@ -396,15 +396,15 @@ class _EditionSeizeState extends State<EditionSeize> {
                 children: [
                   Text(
                     'MasterClass',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 24,
-                      color: Colors.brown,
                       fontWeight: FontWeight.bold,
+                      color: Colors.brown,
                     ),
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),

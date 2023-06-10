@@ -217,7 +217,7 @@ class _EditionUnState extends State<EditionUn> {
                   ),
                   Text(
                     'Voir plus',
-                    style: TextStyle(
+                    style: GoogleFonts.workSans(
                       fontSize: 16,
                       color: Colors.brown,
                     ),
@@ -276,6 +276,23 @@ class _EditionUnState extends State<EditionUn> {
                 }
                 return CircularProgressIndicator();
               },
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Palmares Court Métrage',
+                    style: GoogleFonts.workSans(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.brown,
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 20),
             FutureBuilder<List<String>>(

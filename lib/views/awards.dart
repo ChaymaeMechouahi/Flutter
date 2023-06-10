@@ -19,6 +19,7 @@ import 'edition15.dart';
 import 'edition16.dart';
 import 'edition2.dart';
 import 'edition4.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 GlobalKey palmares = GlobalKey();
 GlobalKey jury = GlobalKey();
@@ -76,22 +77,26 @@ class _EditState extends State<Edit> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${widget.editionNumber}° EDITION',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
+                        '${widget.editionNumber}éme Edition',
+                       style: GoogleFonts.bitter(
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    const Color.fromARGB(255, 194, 192, 192)),
+                          ),
                       SizedBox(height: 8),
                       Text(
-                        'Du : ${widget.date}',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
+                        ' ${widget.date}',
+                         style: GoogleFonts.bitter(
+                                fontSize: 24,
+                                color: Color.fromARGB(220, 225, 195, 155)),
+                          ),
                       Text(
-                        'Au : ${widget.dateF}',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
+                        ' ${widget.dateF}',
+                         style: GoogleFonts.bitter(
+                                fontSize: 24,
+                                color: Color.fromARGB(220, 225, 195, 155)),
+                          ),
                     ],
                   ),
                 ),
